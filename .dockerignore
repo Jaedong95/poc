@@ -1,0 +1,17 @@
+# 환경변수 파일 
+# .env
+
+# PostgreSQL DB 
+# ./config/db_config.json
+./postgres-backup/*
+
+# log 파일 
+*.log
+
+# ner 데이터 생성 파일 
+*_ner.py
+
+# 학습 및 백업 파일 
+train_*.py
+backup_*.py
+tokenizer_customize.py

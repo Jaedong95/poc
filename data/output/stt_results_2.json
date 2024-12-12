@@ -1,0 +1,620 @@
+[
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 0.66,
+        "end_time": 2.93,
+        "text": "뭔가 이런식으로 나오니까.."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 0.77,
+        "end_time": 1.4,
+        "text": "뭔가 이런"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 7.0,
+        "end_time": 9.89,
+        "text": "여기는..."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 11.54,
+        "end_time": 22.98,
+        "text": "너 사실 이거 찾은 거 아니야? 이렇게 나오다 보니까 저기는 딱 중개사를 위해서 만드신 거라는 생각이 들어서 이거는"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 15.54,
+        "end_time": 15.88,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 21.56,
+        "end_time": 28.53,
+        "text": "음 이거는 별도로 한번 미팅을 잡던지 알아봐서 말씀을 드려야 될 것 같아요 이분들이 직접"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 33.48,
+        "end_time": 35.1,
+        "text": "있어요, 이분들이."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 35.1,
+        "end_time": 45.86,
+        "text": "그래서 이건 해외중개사로만 한다면 얘네의 범위는 SEC랑 뉴스로 확정해도 되는건가?"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 35.91,
+        "end_time": 36.92,
+        "text": "맞아요, 맞아요."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 39.25,
+        "end_time": 40.36,
+        "text": "네."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 44.19,
+        "end_time": 50.99,
+        "text": "음 네네네 그러면 종목 40, 44개의 종목에 대해서"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 53.74,
+        "end_time": 59.3,
+        "text": "s.e.c 플러스 뉴스로만 확정을 해도 되냐 그 다음에 중계 사안은"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 60.53,
+        "end_time": 70.5,
+        "text": "캔터 플러스 2개도 포함이냐 그리고 걔는 세 개 사이트를 다 하는 경로로 가는 게 맞냐"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 65.47,
+        "end_time": 68.0,
+        "text": "3개 사이트를 다 하는 경우가 많습니다."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 69.54,
+        "end_time": 69.83,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 71.7,
+        "end_time": 84.59,
+        "text": "이거는 답변해서 드리고 만약에 필요하시다면 그분들이 직접 이런 이런 경로로 여기만 보시면 돼요 이런 걸 알려줄 수도 있어서 그런데 그거를 알려주시는 것 같다 가지고"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 82.33,
+        "end_time": 88.69,
+        "text": "그건 그거예요? 아 네네네 딱 그 부분만 아 이건 확인해 드릴게요"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 86.53,
+        "end_time": 90.14,
+        "text": "아 이건 확인해 드릴게요."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 88.84,
+        "end_time": 89.03,
+        "text": "you"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 93.94,
+        "end_time": 107.0,
+        "text": "Q. 회의록은 그때 화자 구분할 때 우리 목소리를 학습 안하고 할 수 있게끔 되는 건가요?"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 104.12,
+        "end_time": 114.68,
+        "text": "네, 할 수 있게끔 지금 하고 있고요. 네, 지금 테스트하고 있는 중이고. 그 다음에 지금 여기 켜져 있어요. 켜 가지고 진행을 하고 있는데."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 116.1,
+        "end_time": 119.98,
+        "text": "지금 현재 대충 테스트 과정에서 이렇게 만들어 놨고요"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 122.34,
+        "end_time": 134.05,
+        "text": "대충 이렇게 만들어 가지고 진행을 하고 있는데 저희가 지금 고민을 하고 있는 것 중에 하나가 또 여쭤보고 싶었던 게 이게 외약을 하게 되면"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 131.77,
+        "end_time": 132.11,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 132.11,
+        "end_time": 132.28,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 135.81,
+        "end_time": 147.33,
+        "text": "A라는 사람이 있고, B라는 사람이 있고, C라는 사람이 있잖아요? 그럼 A라는 사람이 무슨 얘기를 했는지 요약을 해주고, B라는 사람이 무슨 얘기를 했는지 요약을 해줘야 되는 건지, 아니면 그냥 전체적으로 요약만 나오면 되는 건지 그 부분을..."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 138.73,
+        "end_time": 139.0,
+        "text": "고맙습니다."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 148.5,
+        "end_time": 170.69,
+        "text": "그거에 대해서 생각이 어제 들더라구요. 어제. 그게 왜냐면 이제 디테일이 들어가다 보니까 근데 우리가 GPT 쓸 때도 화자 끼리 군집을 지어줘. 아니면 내용의 주제별로 군집을 지어줘. 이렇게 하면 쫙쫙쫙 요약을 해주잖아요. 그렇게는 혹시나 안되나요?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 151.75,
+        "end_time": 154.59,
+        "text": "그게 왜냐면 이제 GTM에 들어가다 보니까"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 154.59,
+        "end_time": 155.1,
+        "text": "말씀 감사합니다."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 166.13,
+        "end_time": 166.32,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 168.11,
+        "end_time": 169.2,
+        "text": "않나요? 네네네."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 172.22,
+        "end_time": 177.47,
+        "text": "그러니까 우리가 회의를 하다 보면 예를 들어서"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 178.86,
+        "end_time": 193.84,
+        "text": "cdd라는 것에 대해서 어떻게 할 건지 오늘 회의를 해보자 이러면 그에 대해서 막 발화를 할거고 cdd의 의견 이 같은 사람들끼리 회의록을 정리 할 수 있을 것이고"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 194.75,
+        "end_time": 220.18,
+        "text": "의견 내용 중심으로 군집을 이룰 수 있을 것이고 그게 아니고 화자별로 할 수도 있을 것이고 시계열순으로 할 수도 있을 것이고 이게 여러 타입이잖아요 이거를 이 회의록에서 원하는 대로 커스텀해서 이걸로 보여줘 이걸로 보여줘 이걸로 보여줘 할 수 있어요? 아니면 하나의 포맷대로 그냥 만들어줘야 되는 거예요?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 220.18,
+        "end_time": 244.95,
+        "text": "일단 현재 나오는 회의록은 화자가 발언 시기를 순으로 A가 몇 시부터 몇 시까지 무슨 말을 했다 이런 식으로 화자 구분하는 것까지가 나오고 그런데 어떤 주제에 대해서 찬성하는 사람에 대한 이야기를 따로 분리하고 이런 거는 추가적으로 이게 이 사람이 뭐 그런 거를 파악을 해야 돼 가지고"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 228.45,
+        "end_time": 228.77,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 244.95,
+        "end_time": 245.9,
+        "text": "Бе-бе-бе!"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 245.9,
+        "end_time": 250.27,
+        "text": "그런 것을 파악하려면 추가적인 모델이 필요할 것 같고요."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 250.08,
+        "end_time": 254.0,
+        "text": "아 추가적인 모델이 필요해요? 저희 POC 상태에서는 안 돼요?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 251.76,
+        "end_time": 251.97,
+        "text": "Enjoy."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 254.0,
+        "end_time": 265.27,
+        "text": "피오시 상태에서는 일단은 화자 굽은 A가 무슨 말 했고 B가 무슨 말 했고 그런 거를 보여주는 정도도 할 수 있을 것 같아요"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 264.01,
+        "end_time": 285.15,
+        "text": "그러면 우리가 막 이렇게 얘기를 했잖아요. 이 시간 순서대로 내가 얘기하고 김태현 과장님이 얘기하고 이 순서대로 그냥 내용이 이렇게 쭉쭉쭉쭉 나열 식으로 될 거잖아요. 그거는 기본적으로 된다고 생각을 했고 그거 말고 그거를 다 뭉뚱 그려서 그래서 얘네들이 말한 거 에 대해서 요약을 하자면 이거야 라고는 안 나오는 거예요"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 285.1,
+        "end_time": 289.47,
+        "text": "요약은 이제... 네 요약까지는 될거고"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 287.13,
+        "end_time": 292.37,
+        "text": "예, 유예까지는 될거죠. 네, 유예까지는 되고, 그 내용이 유양될 때."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 289.47,
+        "end_time": 293.79,
+        "text": "아까 말씀하셨던 요약을 한 다음에"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 294.48,
+        "end_time": 297.12,
+        "text": "이거를 군집별로 묶는 부분을"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 296.58,
+        "end_time": 297.25,
+        "text": "네, 네, 네."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 298.92,
+        "end_time": 309.67,
+        "text": "요약을 할 때 무슨 기준에 의거해서 요약을 할 거잖아요 뭘로 요약을 하는데요 그러니까 주제별로 요약을 하는 건지 내용의 주제별로 요약을 하는 건지"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 302.5,
+        "end_time": 302.87,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 310.55,
+        "end_time": 313.4,
+        "text": "어떤 기준이 있을 거잖아요. 요약의 기준이."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 310.6,
+        "end_time": 311.05,
+        "text": "어떻게"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 313.8,
+        "end_time": 320.1,
+        "text": "그 기준은 저희가 어떤 거에 중점을 보서 요약을 하고 싶은지를 딱 정해서 하면은"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 319.49,
+        "end_time": 338.88,
+        "text": "저희가 그때 회의록 샘플 주셨잖아요. 이게 이제 전체 회의 요약이여가지고 전체 회의 요약은 그냥 회의 요약을 하면 되는 거고 지금 정확하게 원하시는 게 여러 방면에 요약인 거잖아요. 그게 이제..."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 322.98,
+        "end_time": 323.86,
+        "text": "Değil mi bebeğim?"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 325.5,
+        "end_time": 326.16,
+        "text": "네네네."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 331.96,
+        "end_time": 332.3,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 333.99,
+        "end_time": 336.62,
+        "text": "당면의 요약인 거잖아요."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 339.98,
+        "end_time": 398.77,
+        "text": "이게 채찍 PT 같은 경우는 거기서 바로 챕터처럼 뭐를 요약해주라고 다시 들어가는 거고요. 지금 이거는 딱 정해진 대로 뭘 받으려고 하는 건데 그런 거죠. 만약에 화자별 요약은 가능할 것 같아요. 왜냐면 화자가 다 태그가 되어서 나오니까 누구는 이런 말을 회의 동안에 했고 이렇게 화자 요약은 돼요. 근데 주제별 요약은 어떤 회의에는 명확한 주제가 있고 의견대립이 명확하게 있어서 누구도 이렇게 얘기했고 이런 식으로는 되는데 안 그럴 때도 있잖아요. 네 그러다 보니까 채찍 PT로 만약에 그걸 넣으면은 지금 뭐 그렇게 답변을 받을 수가 있는데 이거는 이제 정해진 대로 딱딱 넣으면 되는 거니까 내용으로 요약을 하는 거는 뭔가 딱 정해가지고 하기가 애매한 부분이 있어가지고.."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 347.69,
+        "end_time": 349.29,
+        "text": "네, 지금 이거는"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 348.48,
+        "end_time": 349.02,
+        "text": "지금 이건"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 349.92,
+        "end_time": 351.27,
+        "text": "정해진 대로 얻으시기 바랍니다."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 360.03,
+        "end_time": 361.56,
+        "text": "そうそうそうそう"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 376.33,
+        "end_time": 377.12,
+        "text": "있죠, 있죠."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 388.27,
+        "end_time": 389.52,
+        "text": "정해진 대로 딱딱딱"
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 389.52,
+        "end_time": 390.57,
+        "text": "MBC 뉴스 김건휘입니다."
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 398.77,
+        "end_time": 405.03,
+        "text": "지금 개발한 요약이 어떤 거에 대한 요약이라고요?"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 404.42,
+        "end_time": 406.41,
+        "text": "네, 전체적으로."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 405.03,
+        "end_time": 414.51,
+        "text": "그리고 화자 요약까지는 가능할 것 같아요. 어떤 사람이 전체 회의 동안에 무슨 얘기를 했는지 화자별 요약하는 것은 가능할 것 같아요."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 407.98,
+        "end_time": 409.0,
+        "text": "화자까지 해서"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 411.71,
+        "end_time": 413.06,
+        "text": "지금 화자별 요약"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 415.12,
+        "end_time": 429.35,
+        "text": "그래서 오늘 안 그래도 여쭤보려 했던 게 정확히 아웃풋이 어떤 식으로 나왔으면 좋겠는지를 딱 주시지 않으신 것 같아가지고 일단 회의룩 샘플 주시지 않으셨죠? 네 회의룩 샘플 그거 하나 딱 주셔서 저희는 그대로만 가면 되는 줄 알았어요"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 417.13,
+        "end_time": 417.81,
+        "text": "올라였던 게."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 419.58,
+        "end_time": 419.8,
+        "text": "punish"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 421.15,
+        "end_time": 421.59,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 423.81,
+        "end_time": 425.7,
+        "text": "회의용 샘플 주시지 않으세요?"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 429.35,
+        "end_time": 438.66,
+        "text": "그러면은 지금 자동화까지 하는거는 화자별 요약까지는 자동화해서 나올 수 있다는 말씀이신거죠?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 429.74,
+        "end_time": 430.51,
+        "text": "Mmm."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 438.44,
+        "end_time": 442.53,
+        "text": "화자 구분이 되면 화자로 태그가 되어있으니까 그거를 요약을 합니다."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 439.88,
+        "end_time": 440.15,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 446.48,
+        "end_time": 454.78,
+        "text": "만약에 사용자가 책본 형태로 UI를 만들거잖아요"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 455.35,
+        "end_time": 459.54,
+        "text": "근데 저희가 지금 이게 회의록 부분은 그 UI에 뭐"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 460.5,
+        "end_time": 470.47,
+        "text": "붙을 것 같아요. 그럼 여기서 다 나오는거에요? 이쪽에서 하고 아니면 사이트를 하나 따로 만들어서 그쪽에서 나올 것 같아요. 웹사이트가 따로 나와가지고."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 461.58,
+        "end_time": 463.54,
+        "text": "그럼 여기서 다 나오는거야?"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 470.47,
+        "end_time": 472.87,
+        "text": "엔진으로 해가지고 그 변환이..."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 472.02,
+        "end_time": 498.28,
+        "text": "이쪽에다가는 stt 엔진을 못 태워서 그래서 저희가 어떻게 하냐면 이쪽에서 하고 난 다음에 핑거 idc 로 옮겨 가지고 그쪽에서 돌리고 요약 해 가지고 사이트 하나 만드는 그 저희 관리자 페이지 처럼 그런 식으로 사이트 별도로 만들어서 그쪽에서 할 수 있게끔 하거나 아니면은 그 부분은 또 저희 내부에서 어떤 식으로 해야 될지 고민을 계속 하고 있는 부분이에요"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 498.79,
+        "end_time": 521.16,
+        "text": "이해가 잘 안되는데 여기서 녹음을 하잖아요. 녹음 파일이 여기 어플에 있을 거고 여기 서버에 있을 거잖아요. 그거를 그럼 이제 sdt 엔진을 태우는 건 핑거 쪽에서 돌린다는 거예요. 거기서 나와서 이제 텍스트가 나오면 화재별 요약은 LLM 해야 되잖아요. 그거는 없어요."
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 501.03,
+        "end_time": 501.15,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 501.15,
+        "end_time": 502.03,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 506.69,
+        "end_time": 506.91,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 516.09,
+        "end_time": 517.03,
+        "text": "는 허접을"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 517.03,
+        "end_time": 518.77,
+        "text": "레벨 유압은 에르렘이 해야 되잖아요"
+    },
+    {
+        "speaker": "SPEAKER_04",
+        "start_time": 520.32,
+        "end_time": 523.48,
+        "text": "이제 api 받아가지고"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 523.48,
+        "end_time": 539.12,
+        "text": "그것도 핑거 쪽에서 하시는거죠? 그러면 이제 그렇게 해서 화자별로 유약된 텍스트 회의록이 나올 거잖아요. 제 말은 그러면 이제 지금 한계로는 화자별로 유약하는 것 밖에 못한다. 근데 실질적으로 그거는..."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 539.73,
+        "end_time": 550.61,
+        "text": "만약에 사용하는 내부 직원 입장에서 그렇게 잘 요약됐다고 느끼질 못할 것 같아요. 그래서 제 생각에 화자별로 요약을 해서 나온 결과물을 가지고"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 551.3,
+        "end_time": 557.5,
+        "text": "그거를 한번 읽었을 때 읽은 사람은 이게 뭐 어떤 개략적인 어떤 주제로 얘기하는지 알 거 잖아요"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 558.09,
+        "end_time": 563.72,
+        "text": "그럼 이 파일을 어떤 형태로든 뭐 llm 에 다시 넣은 다음에 이거를"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 564.4,
+        "end_time": 571.32,
+        "text": "이런 주제로 얘기를 하는 것 같은데 이 주제랑 이 주제로 해서 다시 요약해줘 하면은 그거는 가능한가요?"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 571.47,
+        "end_time": 598.65,
+        "text": "그게 그러면 그건 또 완전 별도의 테스트인게 지금 말씀하신 대로 녹음을 하고 보내서 STT를 하고 그 다음에 화자별 분류를 하고 전체 회의 요약하고 화자별 요약하고 그리고 그거를 페이지에 보여주는 거잖아요 근데 이제 여기서 또 말씀하시는 거를 얘를 다시 LLM에 보내서 채팅을 할 수 있게 만드는 거는 그거는 또 완전 별도의 디벨롭을 해야 되는 부분인 거니까"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 575.01,
+        "end_time": 575.35,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 581.44,
+        "end_time": 582.03,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_03",
+        "start_time": 582.03,
+        "end_time": 582.35,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 599.48,
+        "end_time": 599.62,
+        "text": "you"
+    }
+]

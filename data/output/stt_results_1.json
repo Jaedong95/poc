@@ -1,0 +1,506 @@
+[
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 0.03,
+        "end_time": 22.17,
+        "text": "이번에 딱 그 명확하잖아요 그래서 계속 모니터링을 자동화 할 수 있는 파이프라인을 만들 수가 있는데 그냥 이 회사의 사이트에서 찾아달라 라고 하시면은 뭐를 모니터링을 해야될지가 좀 불균명해지는데 한번 저 사이트에 그러면 들어가보면"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 18.42,
+        "end_time": 18.88,
+        "text": "네네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 22.17,
+        "end_time": 22.8,
+        "text": "네."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 37.32,
+        "end_time": 37.51,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 54.05,
+        "end_time": 79.48,
+        "text": "말씀하신 대로 여기서는 어디서 찾아야 되는지를 다 명시를 해주셨잖아요 그래서 그 결과를 자동화면이 되는 건데 여기서 보시면 캔털닷컴이랑 이게 사이트 거든요 여기서 뭐를 어디를 봐야 되는지를 여쭤본 거였어요 여기서 어떤 결과값을 계속 모니터링을 하고 싶으신 건지"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 66.81,
+        "end_time": 67.23,
+        "text": "Vem, vem."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 68.83,
+        "end_time": 69.34,
+        "text": "Bebeğim."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 79.12,
+        "end_time": 96.93,
+        "text": "그러니까 이게 지금 이 캠터라는 중개 브로커 회사의 홈페이지 잖아요 그 회사 홈페이지에 자기네들이 위험요소가 있는 게 게재되어 있는지 안 게재되어 있는지 모르겠는데 지금 현재 있으면 그것도 필터링을 하고"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 98.31,
+        "end_time": 100.08,
+        "text": "지금 그게 헷갈리시는 거죠?"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 100.99,
+        "end_time": 124.03,
+        "text": "그 한 마디로 켄터라는 회사가 위험 요소에 처해있는지 안 처해있는 지를 여기 사이트에는 아마 자기네 회사 홈페이지에 게재할지는 모르 겠지만 있으면 그 발췌를 하고 그 다음에 저기 사이트 각 사이트나 다른 뉴스에서 그걸 발췌해야 할 것 같다고 생각이 되어지거든요 제 생각에는"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 112.06,
+        "end_time": 112.44,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 124.03,
+        "end_time": 126.39,
+        "text": "그니까 만약에 여기에 이제"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 126.39,
+        "end_time": 137.53,
+        "text": "이거는 해외 쪽에 그 사람을 불러야 할 것 같거든요. 이런 디테일한 내용이 있었으면 제가 그걸 모셨을텐데 미팅 잡아가지고"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 137.53,
+        "end_time": 137.85,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 139.22,
+        "end_time": 142.05,
+        "text": "뉴스 업데이트 쪽에서"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 142.05,
+        "end_time": 150.32,
+        "text": "예 뭐 공지사항이나 여기에도 게시판 형태나 자기 회사의 그걸 알림 이라든가 이런 게 있을 것 같거든요"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 151.32,
+        "end_time": 156.24,
+        "text": "이게 뭐 IR 뭐 이런 탭이 있으면은 맞는데"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 154.29,
+        "end_time": 154.89,
+        "text": "네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 172.54,
+        "end_time": 177.84,
+        "text": "내가 전화해볼게. 좀 너가 답장하자면 무례할 수도 있지만"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 198.48,
+        "end_time": 200.22,
+        "text": "그러면 표정 한번 볼까요?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 202.48,
+        "end_time": 204.02,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 204.42,
+        "end_time": 209.53,
+        "text": "청소전으로 했는데, 내 번호가 휴대폰이여가지고 안 받을 줄 알았네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 210.48,
+        "end_time": 211.39,
+        "text": "Thank you."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 222.16,
+        "end_time": 231.94,
+        "text": "일단 지금 전화를 안 받으시니까 정리하던지 아니면 이 회의 끝쯤에 모시던지 할게요."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 225.8,
+        "end_time": 227.86,
+        "text": "하던지 아니면 이 회의 끝에"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 228.03,
+        "end_time": 228.47,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 230.63,
+        "end_time": 241.5,
+        "text": "이 사이트는 모니터링보다는 이 회사라는 것을 알려주신 사이트라고 이해를 해도 될까요? 네네네네"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 239.66,
+        "end_time": 258.83,
+        "text": "네, 제 생각에는 그래요. 키포인트는 이 브로커가 3개인지 1개인지 저희가 알려줘야 하는 거고, 그 회사가 위험요소에 처해져 있냐. 그러니까 우리가 얘네랑 지금 계약을 맺었는데, 그 부분은 이해를 하고 있는데,"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 255.42,
+        "end_time": 305.4,
+        "text": "그 부분은 이해를 하고 있는데, 원래 개발 범위가 종목들을 모니터링을 하는데, 그런데 브로커가 포함이 된 거잖아요. 왜냐하면 이 부분은 해외중개사 이름으로 검색으로 나와 있는 걸로 봐서는 종목에 관련된 게 아니고 해외중개사에 대한 내용을 여기서 모니터링을 해달라고 하신 것 같아요. 그래서 그걸 여쭤보는 게, 그러면 이 종목은 SEC 공시랑 뉴스만 보는 게 맞는지, 왜냐하면 여기서는 이 종목들 검색해봤자 결과가 나오는 게 아니어서 이브 파트는 해외중개사에 관련된 내용이라고 이해를 하고, 이거는 SEC랑 뉴스를 모니터링하면 되는 건지, 그걸 여쭤보는 거예요."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 262.5,
+        "end_time": 263.53,
+        "text": "맞아요. 그게 중요해요."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 266.99,
+        "end_time": 267.75,
+        "text": "네네네네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 273.52,
+        "end_time": 274.11,
+        "text": "Baby."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 281.4,
+        "end_time": 282.23,
+        "text": "네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 284.75,
+        "end_time": 285.37,
+        "text": "그러면"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 296.25,
+        "end_time": 296.39,
+        "text": "you"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 304.47,
+        "end_time": 310.48,
+        "text": "그거는 이따가 이 해매 쪽에는 이따가 모시던지 정의를 해서 드릴게요"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 323.74,
+        "end_time": 342.48,
+        "text": "근데 얘네들이 이제 다루고 있는 이런 종목에 대해서 모니터링을 하겠다. 그래서 이거는 말씀하신 대로 별명이 없는 사이트인 것 같고 여기서 얘네 이름을 검색해서 나오는 관련 뉴스 중에 이거에 대한 종목에 대해서 아니 그니까"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 341.99,
+        "end_time": 382.57,
+        "text": "아니 그러니까 완전 별도의 테스크로 보고 있거든요. 이거랑 이거랑요? 네 그렇죠. 별도의 테스크인 거죠. 왜냐면 얘네는 SEC 공시랑 그리고 뉴스로 이런 위험이 있는 건지를 계속 모니터링하고 레포트를 만드는 거라면 쟤네는 소스가 다르잖아요. 저 사이트에서 이제 그런 것들이 있는지를 또 모니터링을 한다면 매일 아침 받아보시는 모니터링 개수가 이 종목 플러스 저 브로커가 되는 거잖아요. 근데 이게 소스가 동일하면 전혀 상관이 없는 건데"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 345.95,
+        "end_time": 346.85,
+        "text": "이거랑 이거랑요?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 351.08,
+        "end_time": 351.47,
+        "text": "thing."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 360.89,
+        "end_time": 361.07,
+        "text": "you"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 364.56,
+        "end_time": 365.24,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 383.97,
+        "end_time": 395.9,
+        "text": "자동화 모니터링을 만드는 파이프라인에 저 사이트들도 포함이 되는 것이기 때문에 테스크가 별도의 테스크에요 사실은."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 391.04,
+        "end_time": 391.53,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 391.53,
+        "end_time": 391.7,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 394.84,
+        "end_time": 462.56,
+        "text": "그런데 지금 말씀하신 것을 이해를 했는데 이 세 개 사이트 있잖아요 . 이 경로를 무시하고 금융산업규제 랑 위원회 청산기관에 가면 이 마이크로소프트 에 대해서 이런 단어들을 표현하는 위험요소들이 있을 것 같거든요 . 보여주는 정보값이 이 경로는 이것 때문에 써놓은 거고 제가 봤을 때는 여기 해외중개사 이름으로 검색 해외중개사 이름은 이것 때문에 쓴 거고 이 경로를 무시하고 이 사이트 자체가 우리나라로 치면 예탁결제원이라든가 전자공시 시스템 이런 거로 알고 있어요. 그런 사이트에서 이런 애플이나 마이크로소프트 회사들이 이런 파산 에 준하는 위험요소 키워드를 가지고 있으면 그걸 다 끌고 와야 되는 거거든요. 네 그 경로는 밑에 브로커를 서치 할 때 그 경로로 가세요 라고 예시 를 드려놓은 거고"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 420.03,
+        "end_time": 421.3,
+        "text": "이 결론은"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 426.72,
+        "end_time": 427.69,
+        "text": "사이이거든요."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 438.24,
+        "end_time": 438.66,
+        "text": "고맙습니다."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 462.61,
+        "end_time": 464.28,
+        "text": "음 프로포즈"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 463.94,
+        "end_time": 465.9,
+        "text": "응, 응, 어, 네네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 467.37,
+        "end_time": 472.33,
+        "text": "그러니까 한마디로 얘든 브로커든 이 세 개 사이트를 다 뒤지는 게 맞죠."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 475.65,
+        "end_time": 488.39,
+        "text": "아마 한 종목이라도 예를 들어서 이제 뭘 심으려면 애플이라던가 한 종목이라도 이 세 개 사이트에 그런 값을 그 끌어낼 수 있는 게 있는지 봐야 되지 않을까요?"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 488.56,
+        "end_time": 493.98,
+        "text": "그럼 저 이렇게 빨대 섭취를 했을 때 네네 없었어요 잠시만요"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 490.32,
+        "end_time": 490.98,
+        "text": "Okay, there's a..."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 490.98,
+        "end_time": 491.28,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 491.9,
+        "end_time": 494.82,
+        "text": "네, 네. 없었어요."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 493.98,
+        "end_time": 499.28,
+        "text": "네 사실 이거를 담당해주시는 분을 보시면 가장 생각되는데"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 501.13,
+        "end_time": 501.47,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 501.47,
+        "end_time": 501.84,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 509.62,
+        "end_time": 511.38,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 513.27,
+        "end_time": 516.27,
+        "text": "전기 탑결제, 전기 탑결제, 전소공시, 전기탑결제"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 527.48,
+        "end_time": 529.03,
+        "text": "네."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 529.03,
+        "end_time": 542.53,
+        "text": "이 해외쪽 지리가 많으면 그 분들을 모시거나 한번 같이 보면서 하는 게 좋을 것 같고"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 530.02,
+        "end_time": 531.96,
+        "text": "이제 브이 해외쪽 볼게요"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 535.64,
+        "end_time": 535.8,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 538.71,
+        "end_time": 540.22,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 541.28,
+        "end_time": 564.03,
+        "text": "네, 왜냐면 이거는 하고 있는 거여서 브로커 쪽이기 때문에 보시면은 저는 이게 딱 그 브로커로만 해당되었다고 생각했던 부분이 여기 살짝 들어가면은 어, 도대체 이제 어, 어, 그 한 번 그러면 여기다가 근데 우선은 네, 우선은 여기 되게 명확하게"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 545.45,
+        "end_time": 546.16,
+        "text": "아 그래요?"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 547.15,
+        "end_time": 547.68,
+        "text": "제가 직접 해보는 게 가장 행복하거든요. 없었습니다. 우리 역대 최초의 가수인데."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 552.08,
+        "end_time": 554.8,
+        "text": "아 여기 사이트 들어가면"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 559.83,
+        "end_time": 561.53,
+        "text": "근데 후포를 쳐볼까요?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 561.53,
+        "end_time": 561.97,
+        "text": "Uzanır"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 564.67,
+        "end_time": 565.61,
+        "text": "Bây giờ để em vô thủ luôn"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 564.97,
+        "end_time": 565.53,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 567.12,
+        "end_time": 578.47,
+        "text": "해외중개사 이름을 검색을 하고 나온 결과값 모니터링이라는 것은 너무 명확해서 그렇게 하면 되겠다 였거든요."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 569.24,
+        "end_time": 569.87,
+        "text": "네네"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 573.12,
+        "end_time": 573.53,
+        "text": ""
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 573.53,
+        "end_time": 573.98,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 575.76,
+        "end_time": 575.89,
+        "text": "You"
+    },
+    {
+        "speaker": "SPEAKER_02",
+        "start_time": 578.08,
+        "end_time": 591.48,
+        "text": "그러면 해외중개사는 만약에 칸터만 해야 된다 하면 이 세 개 사이트 다 서치하는 건 맞죠? 칸터든 뭐든 다 세 개 다 하는 건 맞고 그건 명확하게 써주신 건 맞죠?"
+    },
+    {
+        "speaker": "SPEAKER_00",
+        "start_time": 587.38,
+        "end_time": 592.11,
+        "text": "3개 다 하는 거 맞고 명목에 써주신 거니까"
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 591.26,
+        "end_time": 591.85,
+        "text": "MBC 뉴스 이덕영입니다."
+    },
+    {
+        "speaker": "SPEAKER_01",
+        "start_time": 595.99,
+        "end_time": 599.45,
+        "text": "근데 이제 AAPL에 검색을 하게 되면은"
+    }
+]
