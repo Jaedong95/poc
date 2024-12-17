@@ -9,7 +9,7 @@ import argparse
 import time
 import json
 import os
-import gc 
+import gc
 
 
 def main(args):
@@ -38,9 +38,9 @@ def main(args):
     audio_chunk = data_p.audio_chunk(audio_file_path, chunk_length=600)
     
     for idx, chunk in enumerate(audio_chunk):
-        file_name = os.path.join(args.output_path, f'stt_results_{idx}.json')
-        speaker_info_pickle = f'sep-speaker-{idx}.pickle'
-        nnnoise_chunk = noise_handler.remove_background_noise(chunk, prop_decrease=0.7)
+        file_name = os.path.join(args.output_path, f'stt_results_20241210_1_{idx}.json')
+        speaker_info_pickle = f'sep-speaker_20241210_1-{idx}.pickle'
+        nnnoise_chunk = noise_handler.remove_background_noise(chunk, prop_decrease=0.5)
         print(f'노이즈 제거: {time.time() - start}')
         filtered_chunk = noise_handler.filter_audio_with_ffmpeg(chunk, high_cutoff=150, low_cutoff=5000)
         # nnnoise_chunk.close()

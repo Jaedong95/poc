@@ -9,7 +9,7 @@ import argparse
 import time
 import json
 import os
-import gc 
+import gc
 
 def main(args):
     file_name = "ibk-poc-meeting1.wav"
@@ -31,7 +31,7 @@ def main(args):
     speaker_diarizer.set_pyannotate(hf_api_key)
     stt_module = WhisperSTT(openai_api_key)
     stt_module.set_client()
-    audio_chunk = data_p.audio_chunk(audio_file_path, chunk_length=600, chunk_file_path=os.path.join(args.output_path, 'chunk'), chunk_file_name='stt-test')
+    audio_chunk = data_p.audio_chunk(audio_file_path, chunk_length=600, chunk_file_path=os.path.join(args.output_path, 'chunk'), chunk_file_name='stt-20241210-test1')
 
 if __name__ == '__main__':
     cli_parser = argparse.ArgumentParser()
