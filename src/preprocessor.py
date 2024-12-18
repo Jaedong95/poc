@@ -410,7 +410,65 @@ class SpeakerDiarizer:
             "end": segment.end,
             "speaker": speaker
         }
+        
+    def _process_local_diarization(self, audio_file, max_speakers):
+        """
+        perform local speaker diarization.
+        Parameters:
+            audio_file: str
+                Path to the audio file.
+            num_speakers: int or None
+                Number of speakers to use for diarization.
+        returns:
+            list
+                A list of processed diarization results.
+        """
+        try:
+            diarization = self.pipeline(audio_file, num_speakers=None)
+        except Exception as e:
+            print(f"[ERROR] Diarization failed: {e}")
+            return []
 
+        speaker_durations = {}     # Calculate total durations for each speaker
+        for turn, _, speaker in diarization.itertracks(yield_label=True):
+            speaker_durations[speaker] = speaker_durations.get(speaker, 0) + (turn.end - turn.start)
+
+        top_speakers = sorted(speaker_durations, key=speaker_durations.get, reverse=True)[:max_speakers]    # Select top N speakers based on duration
+        filtered_diarization = []    # Filter diarization results to include only top speakers
+        for turn, _, speaker in diarization.itertracks(yield_label=True):
+            if speaker in top_speakers:
+                filtered_diarization.append((turn.start, turn.end, speaker))
+
+        results = []   # Convert results
+        for start, end, speaker in filtered_diarization:
+            results.append(self.convert_segments((start, end, speaker)))
+        return results
+
+    '''
+    def seperate_speakers(self, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
+        """
+        화자 분리 실행 및 결과 저장.
+        args:
+            audio_file (str or BytesIO): 입력 오디오 파일 경로 또는 BytesIO 객체.
+            save_path (str): 결과 저장 경로.
+            file_name (str): 저장할 파일 이름.
+            num_speakers (int, optional): 예상 화자 수. 기본값은 Pyannote에서 자동 감지.
+        """
+        if isinstance(audio_file, io.BytesIO):
+            audio_file = self.bytesio_to_tempfile(audio_file)
+
+        if local:
+            results = self._process_local_diarization(audio_file, num_speakers)
+        else:
+            pass
+        if save_path != None:   # 저장 경로 확인 및 결과 저장
+            os.makedirs(save_path, exist_ok=True)
+            save_file_path = os.path.join(save_path, file_name)
+            with open(save_file_path, "w") as f:
+                json.dump(results, f, indent=4)
+            print(f"Results saved to {save_file_path}")
+        return results'''
+    
     def seperate_speakers(self, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
         """
         화자 분리 실행 및 결과 저장.
@@ -422,42 +480,29 @@ class SpeakerDiarizer:
         """
         if isinstance(audio_file, io.BytesIO):   # 입력 데이터 형식 확인 및 변환
             audio_file = self.bytesio_to_tempfile(audio_file)
-
+        
         results = []
         if local:
             try:   # Pyannote Pipeline 초기화
-                diarization = self.pipeline(audio_file, num_speakers=num_speakers)
+                diarization = self.pipeline(audio_file)
             except Exception as e:
                 print(f"[ERROR] Diarization failed: {e}")
                 return
             for result in diarization.itertracks(yield_label=True):  # result: (<Segment>, _, speaker)
+                print(result[-1], num_speakers)
+                if int(result[-1].split('_')[-1]) > num_speakers - 1:
+                    continue 
                 converted_info = self.convert_segments(result)
                 results.append(converted_info)
         else:
             pass 
-        if save_path != None:   # 저장 경로 확인 및 결과 저장
+        if save_path != None:    # 저장 경로 확인 및 결과 저장
             os.makedirs(save_path, exist_ok=True)
             save_file_path = os.path.join(save_path, file_name)
             with open(save_file_path, "w") as f:
                 json.dump(results, f, indent=4)
             print(f"Results saved to {save_file_path}")
         return results
-
-    def speaker_diarizer_aai(self, audio_file, save_path, file_name, num_speakers=None, local=True, aai_api=None):
-        import assemblyai as aai
-        if isinstance(audio_file, io.BytesIO):   # 입력 데이터 형식 확인 및 변환
-            audio_file = self.bytesio_to_tempfile(audio_file)
-        
-        aai.settings.api_key = aai_api
-        config = aai.TranscriptionConfig(speaker_labels=True, language_code="ko")
-
-        transcriber = aai.Transcriber()
-        transcript = transcriber.transcribe(audio_file, config)
-        print(transcript.text)
-        for utterance in transcript.utterances:
-            print(f"Speaker {utterance.speaker}: {utterance.text}")
-
-
 
 
 class ETC:

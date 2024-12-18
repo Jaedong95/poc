@@ -65,9 +65,10 @@ class WhisperSTT(STTModule):
                         )
                     if segment_duration < 2:
                         tmp = transcription.text.replace(",. ", "")
-                        if len(transcription.text) >= 4 and not any(word in transcription.text for word in include_word):
-                            print(f"Skipping segment {i}: Duration too short ({segment_duration:.2f}s)")
-                            continue
+                        if len(tmp) >= 4:
+                            if not any(word in transcription.text for word in include_word):
+                                print(f"Skipping segment {i}: Duration too short ({segment_duration:.2f}s)")
+                                continue
                     if transcription.text == '':
                         continue
                     results.append({

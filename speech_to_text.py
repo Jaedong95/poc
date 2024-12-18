@@ -13,10 +13,9 @@ import gc
 
 
 def main(args):
-    audio_file_name = args.file_name
-    stt_file_name = "stt_" + audio_file_name.split('.')[0] + '.json'
-    audio_file_path = os.path.join(args.data_path, audio_file_name)    
-
+    stt_file_name = "stt_" + args.file_name.split('.')[0] + '.json'
+    audio_file_path = args.file_name    
+    
     load_dotenv()
     openai_api_key = os.getenv('OPENAI_API')
     openai_client = OpenAI(api_key=openai_api_key)
@@ -37,7 +36,7 @@ def main(args):
     if args.chunk_length == None:
         nnnoise_audio = noise_handler.remove_background_noise(audio_file_path, prop_decrease=0.3)
         filtered_chunk = noise_handler.filter_audio_with_ffmpeg(nnnoise_audio, high_cutoff=150, low_cutoff=5000)
-        diar_result = speaker_diarizer.seperate_speakers(filtered_chunk)     
+        diar_result = speaker_diarizer.seperate_speakers(filtered_chunk, num_speakers=args.participant)     
         result = stt_module.process_segments_with_whisper(speaker_diarizer, filtered_chunk, diar_result)
         filtered_chunk.close()
         gc.collect()
@@ -55,7 +54,7 @@ def main(args):
             print(f'오디오 주파수 필터링: {time.time() - start}')
             # emphasized_chunk = voice_enhancer.emphasize_nearby_voice(filtered_chunk)
 
-            diar_result = speaker_diarizer.seperate_speakers(filtered_chunk)     
+            diar_result = speaker_diarizer.seperate_speakers(filtered_chunk, num_speakers=args.participant)     
             result = stt_module.process_segments_with_whisper(speaker_diarizer, filtered_chunk, diar_result)
             filtered_chunk.close()
             gc.collect()
@@ -67,10 +66,9 @@ def main(args):
 
 if __name__ == '__main__':
     cli_parser = argparse.ArgumentParser()
-    cli_parser.add_argument('--data_path', type=str, default='./data')
     cli_parser.add_argument('--output_path', type=str, default='./data/output')
     cli_parser.add_argument('--chunk_length', type=int, default=None)
     cli_parser.add_argument('--file_name', type=str, default=None) 
-    cli_parser.add_argument('--participant', type=int, default=4)
+    cli_parser.add_argument('--participant', type=int, default=5)
     cli_args = cli_parser.parse_args()
     main(cli_args)
