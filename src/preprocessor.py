@@ -19,7 +19,7 @@ import wave
 import re
 import io
 import json
-import os 
+import os
 
 class DataProcessor:
     def data_to_df(self, dataset, columns):
@@ -53,68 +53,7 @@ class DataProcessor:
     def train_test_split(self, dataset, x_col, y_col, test_size, val_test_size, random_state=42):
         X, X_test, y, y_test = train_test_split(dataset[x_col], dataset[y_col], test_size=0.2, stratify=dataset[y_col], random_state=random_state)
         X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=val_test_size, stratify=y, random_state=random_state)
-        return X, X_val, X_test, y, y_val, y_test  
-
-    def align_audio(self, reference_file, target_file, output_file):
-        lag, sr = self.calculate_time_lag(reference_file, target_file)   # 시간차 계산
-        target, _ = librosa.load(target_file, sr=sr)   # 오디오 로드
-        aligned_target = np.pad(target, (lag, 0), mode='constant') if lag > 0 else target[-lag:]
-        sf.write(output_file, aligned_target, sr)     # 정렬된 오디오 저장
-        print(f"Aligned audio saved to {output_file}")
-
-    def calculate_time_lag(self, reference_file, target_file):
-        ref, sr_ref = librosa.load(reference_file, sr=None)     # 샘플링 속도 유지, 기준 오디오 
-        target, sr_target = librosa.load(target_file, sr=None)    # 타겟 오디오 로드
-
-        if sr_ref != sr_target:   # 샘플링 속도 확인 및 일치
-            raise ValueError("Sample rates of the audio files must be the same.")
-        correlation = np.correlate(target, ref, mode='full')   # Cross-Correlation 계산
-        lag = np.argmax(correlation) - len(ref)
-        return lag, sr_ref
-
-    def audio_chunk(self, audio_file_path, chunk_length=60, chunk_file_path=None, chunk_file_name=None):
-        audio = AudioSegment.from_file(audio_file_path)
-        chunk_length_ms = chunk_length * 1000
-        chunks = [audio[i:i + chunk_length_ms] for i in range(0, len(audio), chunk_length_ms)]
-
-        if chunk_file_path:
-            for idx, chunk in enumerate(chunks):
-                temp_file_path = os.path.join(chunk_file_path, f"{chunk_file_name}_{idx}.wav")
-                chunk.export(temp_file_path, format="wav")
-        else:
-            return chunks
-    
-    def concat_chunk(self, chunk_list, save_path=None):
-        final_audio = sum(chunk_list)
-        if save_path:    
-            final_audio.export("processed_audio.wav", format="wav")
-        else:
-            return final_audio
-    
-    def pcm_to_wav(self, pcm_file_path, wav_file_path, sample_rate=44100, channels=1, bit_depth=16):
-        try:
-            with open(pcm_file_path, 'rb') as pcm_file:   # PCM 파일 열기
-                pcm_data = pcm_file.read()
-            
-            with wave.open(wav_file_path, 'wb') as wav_file:   # WAV 파일 생성
-                wav_file.setnchannels(channels)   # 채널 수 (1: 모노, 2: 스테레오)
-                wav_file.setsampwidth(bit_depth // 8)   # 샘플 당 바이트 수
-                wav_file.setframerate(sample_rate)   # 샘플링 속도
-                wav_file.writeframes(pcm_data)   # PCM 데이터 쓰기
-            print(f"WAV 파일이 성공적으로 생성되었습니다: {wav_file_path}")
-        except Exception as e:
-            print(f"오류 발생: {e}")
-
-    def convert_segments(self, segment_data):
-        """
-        Segment 데이터를 변환.
-        Args:
-            segment_data (Tuple[Segment, str, str]): Pyannote diarization 결과의 단일 항목.
-        Returns:
-            Tuple[float, float, str]: 변환된 (start, end, speaker) 데이터.
-        """
-        segment, _, speaker = segment_data   # 튜플 unpack
-        return (float(segment.start), float(segment.end), speaker)
+        return X, X_val, X_test, y, y_val, y_test
         
     def save_results_to_pickle(self, result, output_file):
         with open(output_file, "wb") as f:
@@ -223,6 +162,58 @@ class TimeProcessor:
         return datetime.now()
 
 
+class AudioFileProcessor:
+    def align_audio(self, reference_file, target_file, output_file):
+        lag, sr = self.calculate_time_lag(reference_file, target_file)   # 시간차 계산
+        target, _ = librosa.load(target_file, sr=sr)   # 오디오 로드
+        aligned_target = np.pad(target, (lag, 0), mode='constant') if lag > 0 else target[-lag:]
+        sf.write(output_file, aligned_target, sr)     # 정렬된 오디오 저장
+        print(f"Aligned audio saved to {output_file}")
+
+    def calculate_time_lag(self, reference_file, target_file):
+        ref, sr_ref = librosa.load(reference_file, sr=None)     # 샘플링 속도 유지, 기준 오디오 
+        target, sr_target = librosa.load(target_file, sr=None)    # 타겟 오디오 로드
+
+        if sr_ref != sr_target:   # 샘플링 속도 확인 및 일치
+            raise ValueError("Sample rates of the audio files must be the same.")
+        correlation = np.correlate(target, ref, mode='full')   # Cross-Correlation 계산
+        lag = np.argmax(correlation) - len(ref)
+        return lag, sr_ref
+
+    def audio_chunk(self, audio_file_path, chunk_length=60, chunk_file_path=None, chunk_file_name=None):
+        audio = AudioSegment.from_file(audio_file_path)
+        chunk_length_ms = chunk_length * 1000
+        chunks = [audio[i:i + chunk_length_ms] for i in range(0, len(audio), chunk_length_ms)]
+
+        if chunk_file_path:
+            for idx, chunk in enumerate(chunks):
+                temp_file_path = os.path.join(chunk_file_path, f"{chunk_file_name}_{idx}.wav")
+                chunk.export(temp_file_path, format="wav")
+        else:
+            return chunks
+    
+    def concat_chunk(self, chunk_list, save_path=None):
+        final_audio = sum(chunk_list)
+        if save_path:    
+            final_audio.export("processed_audio.wav", format="wav")
+        else:
+            return final_audio
+    
+    def pcm_to_wav(self, pcm_file_path, wav_file_path, sample_rate=44100, channels=1, bit_depth=16):
+        try:
+            with open(pcm_file_path, 'rb') as pcm_file:   # PCM 파일 열기
+                pcm_data = pcm_file.read()
+
+            with wave.open(wav_file_path, 'wb') as wav_file:   # WAV 파일 생성
+                wav_file.setnchannels(channels)   # 채널 수 (1: 모노, 2: 스테레오)
+                wav_file.setsampwidth(bit_depth // 8)   # 샘플 당 바이트 수
+                wav_file.setframerate(sample_rate)   # 샘플링 속도
+                wav_file.writeframes(pcm_data)   # PCM 데이터 쓰기
+            print(f"WAV 파일이 성공적으로 생성되었습니다: {wav_file_path}")
+        except Exception as e:
+            print(f"오류 발생: {e}")
+
+
 class NoiseHandler: 
     '''
     음성 파일에서 노이즈를 제거한다.
@@ -283,35 +274,30 @@ class NoiseHandler:
         Returns:
             io.BytesIO: 필터링된 오디오 데이터 (output_file이 None인 경우).
         """
-        input_source = None  # 변수 초기화
-        temp_files = []  # 임시 파일을 저장할 리스트
-
+        input_source = None   # 변수 초기화
+        temp_files = []   # 임시 파일을 저장할 리스트
         try:
-            if isinstance(input_file, AudioSegment):  # AudioSegment 객체 처리
+            if isinstance(input_file, AudioSegment):   # AudioSegment 객체 처리
                 with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_input:
-                    input_file.export(temp_input, format="wav")  # AudioSegment -> WAV 변환
+                    input_file.export(temp_input, format="wav")   # AudioSegment -> WAV 변환
                     temp_input.flush()
                     input_source = temp_input.name
-                    temp_files.append(temp_input.name)  # 임시 파일 관리
-
-            elif isinstance(input_file, io.BytesIO):  # BytesIO 객체 처리
+                    temp_files.append(temp_input.name)   # 임시 파일 관리
+            elif isinstance(input_file, io.BytesIO):   # BytesIO 객체 처리
                 with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_input:
                     temp_input.write(input_file.getvalue())
                     temp_input.flush()
                     input_source = temp_input.name
-                    temp_files.append(temp_input.name)  # 임시 파일 관리
-
-            elif isinstance(input_file, (str, os.PathLike)):  # 파일 경로 처리
+                    temp_files.append(temp_input.name)   # 임시 파일 관리
+            elif isinstance(input_file, (str, os.PathLike)):   # 파일 경로 처리
                 input_source = input_file
-
             else:
                 raise ValueError("Invalid input_file type. Must be AudioSegment, file path, or BytesIO object.")
 
             if input_source is None:
                 raise RuntimeError("Failed to determine input source.")
 
-            # FFmpeg 명령 실행
-            command = [
+            command = [   # FFmpeg 명령 실행
                 "ffmpeg",
                 "-i", input_source,  # 입력 파일
                 "-af", f"highpass=f={high_cutoff},lowpass=f={low_cutoff}",  # 필터 적용
@@ -328,10 +314,8 @@ class NoiseHandler:
                 if process.returncode != 0:
                     raise RuntimeError(f"FFmpeg error: {stderr.decode()}")
                 return io.BytesIO(stdout)  # BytesIO로 반환
-
         finally:
-            # 임시 파일 삭제
-            for temp_file in temp_files:
+            for temp_file in temp_files:   # 임시 파일 삭제
                 if os.path.exists(temp_file):
                     os.unlink(temp_file)
 
@@ -427,7 +411,7 @@ class SpeakerDiarizer:
             "speaker": speaker
         }
 
-    def seperate_speakers(self, audio_file, save_path, file_name, num_speakers=None, local=True, aai_api=None):
+    def seperate_speakers(self, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
         """
         화자 분리 실행 및 결과 저장.
         args:
@@ -438,6 +422,7 @@ class SpeakerDiarizer:
         """
         if isinstance(audio_file, io.BytesIO):   # 입력 데이터 형식 확인 및 변환
             audio_file = self.bytesio_to_tempfile(audio_file)
+
         results = []
         if local:
             try:   # Pyannote Pipeline 초기화
@@ -449,22 +434,13 @@ class SpeakerDiarizer:
                 converted_info = self.convert_segments(result)
                 results.append(converted_info)
         else:
-            import assemblyai as aai
-            aai.settings.api_key = aai_api
-            config = aai.TranscriptionConfig(speaker_labels=True, language_code="ko")
-
-            transcriber = aai.Transcriber()
-            transcript = transcriber.transcribe(audio_file, config)
-            print(transcript.text)
-            for utterance in transcript.utterances:
-                print(f"Speaker {utterance.speaker}: {utterance.text}")
-        
-        # 저장 경로 확인 및 결과 저장
-        os.makedirs(save_path, exist_ok=True)
-        save_file_path = os.path.join(save_path, file_name)
-        with open(save_file_path, "w") as f:
-            json.dump(results, f, indent=4)
-        print(f"Results saved to {save_file_path}")
+            pass 
+        if save_path != None:   # 저장 경로 확인 및 결과 저장
+            os.makedirs(save_path, exist_ok=True)
+            save_file_path = os.path.join(save_path, file_name)
+            with open(save_file_path, "w") as f:
+                json.dump(results, f, indent=4)
+            print(f"Results saved to {save_file_path}")
         return results
 
     def speaker_diarizer_aai(self, audio_file, save_path, file_name, num_speakers=None, local=True, aai_api=None):

@@ -38,18 +38,18 @@ class WhisperSTT(STTModule):
             audio_file = speaker_diarizer.bytesio_to_tempfile(audio_file)
         
         results = []
+        include_word = ['네', '아니오']
         audio = AudioSegment.from_file(audio_file)
         for i, segment in enumerate(segments):
             segment_duration = segment['end'] - segment['start']
             if segment_duration < 0.1:
                 print(f"Skipping segment {i}: Duration too short ({segment_duration:.2f}s)")
                 continue
-
             start_ms = int(segment['start'] * 1000)
             end_ms = int(segment['end'] * 1000)
             segment_audio = audio[start_ms:end_ms]
             segment_audio = segment_audio.set_frame_rate(16000).set_channels(1).set_sample_width(2)
-
+            
             audio_buffer = io.BytesIO()
             segment_audio.export(audio_buffer, format="wav")
             audio_buffer.seek(0)    # 파일 포인터를 처음으로 이동
@@ -59,10 +59,17 @@ class WhisperSTT(STTModule):
                     with open(temp_audio_file.name, "rb") as audio_file:
                         transcription = self.openai_client.audio.transcriptions.create(
                             model="whisper-1",
-                            file=audio_file
+                            file=audio_file,
+                            language='ko',
+                            # prompt="이 대화는 이뤄지는 한국어 대화입니다."
                         )
-                    # print(f"화자: {segment['speaker']}, 발언 시작 시간: {round(segment['start'], 2)}초, 발화 종료 시간: {round(segment['end'], 2)}초")
-                    # print(transcription.text)
+                    if segment_duration < 2:
+                        tmp = transcription.text.replace(",. ", "")
+                        if len(transcription.text) >= 4 and not any(word in transcription.text for word in include_word):
+                            print(f"Skipping segment {i}: Duration too short ({segment_duration:.2f}s)")
+                            continue
+                    if transcription.text == '':
+                        continue
                     results.append({
                         "speaker": segment["speaker"],
                         "start_time": round(segment["start"], 2),
@@ -72,4 +79,3 @@ class WhisperSTT(STTModule):
             except Exception as e:
                 print(f"Error processing segment {i} for Speaker {segment['speaker']}: {e}")
         return results
-        
