@@ -198,6 +198,19 @@ class AudioFileProcessor:
             final_audio.export("processed_audio.wav", format="wav")
         else:
             return final_audio
+
+    def bytesio_to_tempfile(self, audio_bytesio):
+        """
+        BytesIO 객체를 임시 파일로 저장
+        args:
+            audio_bytesio (BytesIO): BytesIO 객체
+        returns:
+            str: 임시 파일 경로.
+        """
+        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
+            temp_file.write(audio_bytesio.getvalue())
+            temp_file.flush()
+            return temp_file.name
     
     def pcm_to_wav(self, pcm_file_path, wav_file_path, sample_rate=44100, channels=1, bit_depth=16):
         try:
@@ -212,6 +225,11 @@ class AudioFileProcessor:
             print(f"WAV 파일이 성공적으로 생성되었습니다: {wav_file_path}")
         except Exception as e:
             print(f"오류 발생: {e}")
+
+    def m4a_to_wav(self, m4a_path):
+        audio_file = AudioSegment.from_file(m4a_path, format='m4a')
+        wav_path = m4a_path.replace('m4a', 'wav')
+        audio_file.export(wav_path, format='wav')
 
 
 class NoiseHandler: 
@@ -383,19 +401,6 @@ class SpeakerDiarizer:
         self.pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=self.hf_api)
         self.pipeline.to(self.device)
 
-    def bytesio_to_tempfile(self, audio_bytesio):
-        """
-        BytesIO 객체를 임시 파일로 저장.
-        args:
-            audio_bytesio (BytesIO): BytesIO 객체.
-        returns:
-            str: 임시 파일 경로.
-        """
-        with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_file:
-            temp_file.write(audio_bytesio.getvalue())
-            temp_file.flush()
-            return temp_file.name
-
     def convert_segments(self, result):
         """
         화자 분리 결과를 적절한 형식으로 변환.
@@ -469,7 +474,7 @@ class SpeakerDiarizer:
             print(f"Results saved to {save_file_path}")
         return results'''
     
-    def seperate_speakers(self, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
+    def seperate_speakers(self, data_p, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
         """
         화자 분리 실행 및 결과 저장.
         args:
@@ -479,17 +484,16 @@ class SpeakerDiarizer:
             num_speakers (int, optional): 예상 화자 수. 기본값은 Pyannote에서 자동 감지.
         """
         if isinstance(audio_file, io.BytesIO):   # 입력 데이터 형식 확인 및 변환
-            audio_file = self.bytesio_to_tempfile(audio_file)
+            audio_file = data_p.bytesio_to_tempfile(audio_file)
         
         results = []
         if local:
             try:   # Pyannote Pipeline 초기화
-                diarization = self.pipeline(audio_file)
+                diarization = self.pipeline(audio_file, num_speakers=num_speakers)
             except Exception as e:
                 print(f"[ERROR] Diarization failed: {e}")
                 return
             for result in diarization.itertracks(yield_label=True):  # result: (<Segment>, _, speaker)
-                print(result[-1], num_speakers)
                 if int(result[-1].split('_')[-1]) > num_speakers - 1:
                     continue 
                 converted_info = self.convert_segments(result)

@@ -1,21 +1,58 @@
+from src import NoiseHandler, VoiceEnhancer, VoiceSeperator, SpeakerDiarizer
+from src import DataProcessor
+from src import WhisperSTT
 from flask import Flask, send_file, request, jsonify
+from dotenv import load_dotenv
+from pydub import AudioSegment
+from openai import OpenAI
+import argparse
+import time
+import json
+import os
+import gc
 
 app = Flask(__name__)
 
-@app.route('/stt-20241210-test1_0.wav', methods=['GET'])
+@app.route('/stt/', methods=['GET'])
 def get_audio_file():
-    # 오디오 파일의 전체 경로 확인
-    file_path = './data/output/chunk/stt-20241210-test1_0.wav'
+    file_path = '/ibk/meeting_records/'
+    file_name = request.args.get('audio_file_name')
+    '''noise_handler = NoiseHandler()
+    nnnoise_audio = noise_handler.remove_background_noise(audio_file_path, prop_decrease=0.3)
+    filtered_chunk = noise_handler.filter_audio_with_ffmpeg(nnnoise_audio, high_cutoff=150, low_cutoff=5000)'''
     try:
-        return send_file(file_path, mimetype='audio/wav')
+        return send_file(os.path.join(file_path, file_name), mimetype='audio/wav')
     except Exception as e:
         return jsonify({'error': str(e)}), 404
 
-@app.route('/cori-webhook', methods=['POST'])
+@app.route('/stt/result', methods=['POST'])
 def webhook():
+    '''
+    data: {
+        "jobId": "bd7e97c9-0742-4a19-bd5a-9df519ce8c74",
+        "status": "succeeded",
+        "output": {
+            "diarization": [
+                { "start": 1.2,
+                  "end": 3.4,
+                  "speaker": "SPEAKER_01" },
+                ...
+            ]
+        }
+    }
+    '''
+    data_p = DataProcessor()
     data = request.json
-    print("Webhook received:", data)
-    return jsonify({"status": "success"}), 200
+    diar_result = data['output']['diarization']
+    result = stt_module.process_segments_with_whisper(data_p, filtered_chunk, diar_result)
+
+    print(f"test: {data['output']['diarization'][0]}, len: {len(data['output']['diarization'])}")
+    return result
+    # return jsonify({"status": "success"}), 200
+
+@app.post('/run')
+def run_python_code(data):
+    pass
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8081, debug=True)
