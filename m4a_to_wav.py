@@ -13,12 +13,11 @@ import gc
 
 
 def main(args):
-    data_path = "./data/ibk-poc-call-meeting_20241220.m4a"
     audio_file_path = args.file_name    
     
     load_dotenv()
     audio_p = AudioFileProcessor()
-    audio_p.m4a_to_wav(data_path)
+    audio_p.m4a_to_wav(audio_file_path)
 
 if __name__ == '__main__':
     cli_parser = argparse.ArgumentParser()

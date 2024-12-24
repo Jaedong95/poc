@@ -1,12 +1,12 @@
 from pydub.effects import high_pass_filter, low_pass_filter
-from pyannote.audio import Pipeline
-from pydub import AudioSegment
-from io import BytesIO
 from sklearn.model_selection import train_test_split
 from datetime import datetime, timedelta
 from datasets import Dataset, DatasetDict
+from pyannote.audio import Pipeline
+from collections import Counter
 from pydub import AudioSegment
-import soundfile as sf
+from io import BytesIO
+import pyloudnorm as pyln
 import noisereduce as nr
 import soundfile as sf
 import pandas as pd
@@ -16,9 +16,9 @@ import librosa
 import torch
 import pickle
 import wave
+import json
 import re
 import io
-import json
 import os
 
 class DataProcessor:
@@ -256,12 +256,12 @@ class NoiseHandler:
         if output_file: 
             sf.write(output_file, y_denoised, sr)
             print(f"Saved denoised audio to {output_file}")
-        else:
-            wav_buffer = io.BytesIO()   # 메모리 내 WAV 파일 생성
-            sf.write(wav_buffer, y_denoised, sr, format='WAV')
-            wav_buffer.seek(0)   # 파일 포인터를 처음으로 이동
-            return wav_buffer
-    
+        
+        wav_buffer = io.BytesIO()   # 메모리 내 WAV 파일 생성
+        sf.write(wav_buffer, y_denoised, sr, format='WAV')
+        wav_buffer.seek(0)   # 파일 포인터를 처음으로 이동
+        return wav_buffer
+
     def filter_audio_with_pydub(self, input_file, high_cutoff=200, low_cutoff=3000, output_file=None):
         '''
         pydub (python)을 이용한 오디오 필터링 (고역대, 저역대)
@@ -359,6 +359,7 @@ class VoiceEnhancer:
             y, sr = librosa.load(audio_buffer, sr=None)           
         rms = librosa.feature.rms(y=y)[0]         # RMS 에너지 계산
         mask = rms > threshold                    # 에너지 기준으로 마스크 생성
+
         expanded_mask = np.repeat(mask, len(y) // len(mask) + 1)[:len(y)]   # RMS 값을 전체 신호 길이에 맞게 확장
         y_filtered = y * expanded_mask.astype(float)   # 입력 신호에 확장된 마스크 적용
 
@@ -370,6 +371,52 @@ class VoiceEnhancer:
             sf.write(audio_buffer, y_filtered, sr, format="WAV")
             audio_buffer.seek(0)  # 버퍼의 시작 위치로 이동
             return audio_buffer
+
+    def normalize_audio_pydub(self, audio_file_path, audio_file_name, target_dbfs=-14):
+        audio = AudioSegment.from_file(os.path.join(audio_file_path, audio_file_name))
+        
+        # RMS(root mean square) 기반 볼륨 정규화
+        normalized_audio = audio.apply_gain(-audio.dBFS)
+
+        # 정규화된 오디오 저장
+        output_file = os.path.join(audio_file_path, "pydub_nr_" + audio_file_name)
+        normalized_audio.export(output_file, format="wav")
+        return output_file
+
+        # RMS 기반 볼륨 정규화 + 클리핑 방지
+        change_in_dBFS = target_dbfs - audio.dBFS
+        if change_in_dBFS < 0:  # 음량 감소
+            normalized_audio = audio.apply_gain(change_in_dBFS)
+        else:
+            # 음량 증가 시 클리핑 방지
+            normalized_audio = audio.apply_gain(change_in_dBFS).clip(min=-1.0, max=1.0)
+
+
+    def normalize_audio_lufs(self, audio_input, target_lufs=-14.0, output_file=None):
+        """
+        LUFS 기반 오디오 정규화
+        """
+        #print(audio_input)
+        if isinstance(audio_input, io.BytesIO):
+            audio_input.seek(0)
+            data, rate = sf.read(audio_input)
+        else:
+            data, rate = sf.read(audio_input)
+
+        # 현재 LUFS 계산 및 정규화
+        meter = pyln.Meter(rate)
+        loudness = meter.integrated_loudness(data)
+        loudness_normalized_audio = pyln.normalize.loudness(data, loudness, target_lufs)
+
+        if output_file:
+            sf.write(output_file, loudness_normalized_audio, rate)
+            print(f"Saved normalized audio to {output_file}")
+            return output_file
+        else:
+            wav_buffer = io.BytesIO()
+            sf.write(wav_buffer, loudness_normalized_audio, rate, format='WAV')
+            wav_buffer.seek(0)
+            return wav_buffer
 
 
 class VoiceSeperator:
@@ -401,6 +448,25 @@ class SpeakerDiarizer:
         self.pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=self.hf_api)
         self.pipeline.to(self.device)
 
+    def rename_speaker(self, result, num_speakers):
+        '''
+        화자 분리 결과에서 발화량이 많은 순으로 화자 번호 재부여
+        초과하는 화자의 발화를 제거
+        '''
+        # 발언량에 따라 화자 정렬 및 매핑 생성   
+        speaker_counts = Counter(entry['speaker'] for entry in result)
+        print(f'speaker_counts: {speaker_counts}')
+        sorted_speakers = [speaker for speaker, _ in speaker_counts.most_common()]
+        speaker_mapping = {old_speaker: f"SPEAKER_{i:02d}" for i, old_speaker in enumerate(sorted_speakers)}
+
+        # 화자 번호 재매핑 및 제거
+        filtered_result = []
+        for entry in result:
+            new_speaker = speaker_mapping[entry['speaker']]
+            entry['speaker'] = new_speaker
+            filtered_result.append(entry)
+        return filtered_result
+
     def convert_segments(self, result):
         """
         화자 분리 결과를 적절한 형식으로 변환.
@@ -416,64 +482,6 @@ class SpeakerDiarizer:
             "speaker": speaker
         }
         
-    def _process_local_diarization(self, audio_file, max_speakers):
-        """
-        perform local speaker diarization.
-        Parameters:
-            audio_file: str
-                Path to the audio file.
-            num_speakers: int or None
-                Number of speakers to use for diarization.
-        returns:
-            list
-                A list of processed diarization results.
-        """
-        try:
-            diarization = self.pipeline(audio_file, num_speakers=None)
-        except Exception as e:
-            print(f"[ERROR] Diarization failed: {e}")
-            return []
-
-        speaker_durations = {}     # Calculate total durations for each speaker
-        for turn, _, speaker in diarization.itertracks(yield_label=True):
-            speaker_durations[speaker] = speaker_durations.get(speaker, 0) + (turn.end - turn.start)
-
-        top_speakers = sorted(speaker_durations, key=speaker_durations.get, reverse=True)[:max_speakers]    # Select top N speakers based on duration
-        filtered_diarization = []    # Filter diarization results to include only top speakers
-        for turn, _, speaker in diarization.itertracks(yield_label=True):
-            if speaker in top_speakers:
-                filtered_diarization.append((turn.start, turn.end, speaker))
-
-        results = []   # Convert results
-        for start, end, speaker in filtered_diarization:
-            results.append(self.convert_segments((start, end, speaker)))
-        return results
-
-    '''
-    def seperate_speakers(self, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
-        """
-        화자 분리 실행 및 결과 저장.
-        args:
-            audio_file (str or BytesIO): 입력 오디오 파일 경로 또는 BytesIO 객체.
-            save_path (str): 결과 저장 경로.
-            file_name (str): 저장할 파일 이름.
-            num_speakers (int, optional): 예상 화자 수. 기본값은 Pyannote에서 자동 감지.
-        """
-        if isinstance(audio_file, io.BytesIO):
-            audio_file = self.bytesio_to_tempfile(audio_file)
-
-        if local:
-            results = self._process_local_diarization(audio_file, num_speakers)
-        else:
-            pass
-        if save_path != None:   # 저장 경로 확인 및 결과 저장
-            os.makedirs(save_path, exist_ok=True)
-            save_file_path = os.path.join(save_path, file_name)
-            with open(save_file_path, "w") as f:
-                json.dump(results, f, indent=4)
-            print(f"Results saved to {save_file_path}")
-        return results'''
-    
     def seperate_speakers(self, data_p, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
         """
         화자 분리 실행 및 결과 저장.
@@ -485,28 +493,33 @@ class SpeakerDiarizer:
         """
         if isinstance(audio_file, io.BytesIO):   # 입력 데이터 형식 확인 및 변환
             audio_file = data_p.bytesio_to_tempfile(audio_file)
-        
+
         results = []
         if local:
             try:   # Pyannote Pipeline 초기화
-                diarization = self.pipeline(audio_file, num_speakers=num_speakers)
+                diarization = self.pipeline(audio_file, num_speakers=None)
             except Exception as e:
                 print(f"[ERROR] Diarization failed: {e}")
                 return
             for result in diarization.itertracks(yield_label=True):  # result: (<Segment>, _, speaker)
-                if int(result[-1].split('_')[-1]) > num_speakers - 1:
-                    continue 
                 converted_info = self.convert_segments(result)
+                segment_duration = converted_info['end'] - converted_info['start']
+                if segment_duration < 1.5:
+                    continue
                 results.append(converted_info)
         else:
-            pass 
+            pass
+        # print(results)
+        diar_result = self.rename_speaker(results, num_speakers)
+        print(f'diar_result: {diar_result}')
+
         if save_path != None:    # 저장 경로 확인 및 결과 저장
             os.makedirs(save_path, exist_ok=True)
             save_file_path = os.path.join(save_path, file_name)
             with open(save_file_path, "w") as f:
-                json.dump(results, f, indent=4)
+                json.dump(diar_result, f, indent=4)
             print(f"Results saved to {save_file_path}")
-        return results
+        return diar_result
 
 
 class ETC:

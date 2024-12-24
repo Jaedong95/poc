@@ -34,10 +34,11 @@ def main(args):
 
     start = time.time()
     if args.chunk_length == None:
-        # filtered_chunk = noise_handler.filter_audio_with_ffmpeg(audio_file_path, high_cutoff=150, low_cutoff=5000)
         diar_result = speaker_diarizer.seperate_speakers(audio_p, audio_file_path, num_speakers=args.participant)  
+        with open(os.path.join('./data', 'TFT-diar.json'), "w", encoding="utf-8") as f:
+            json.dump(diar_result, f, ensure_ascii=False, indent=4)
+        
         result = stt_module.process_segments_with_whisper(audio_p, audio_file_path, diar_result)
-            
         with open(os.path.join('./data', stt_file_name), "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=4)
         print(f"모든 결과가 JSON 파일 '{os.path.join('./data', stt_file_name)}'로 저장되었습니다.")
@@ -54,11 +55,13 @@ def main(args):
             # emphasized_chunk = voice_enhancer.emphasize_nearby_voice(filtered_chunk)
 
             diar_result = speaker_diarizer.seperate_speakers(audio_p, filtered_chunk, num_speakers=args.participant)
+            
+            '''
             result = stt_module.process_segments_with_whisper(audio_p, filtered_chunk, diar_result)
             filtered_chunk.close()
             gc.collect()
 
-            '''with open(cstt_file_name, "w", encoding="utf-8") as f:
+            with open(cstt_file_name, "w", encoding="utf-8") as f:
                 json.dump(result, f, ensure_ascii=False, indent=4)
             print(f"모든 결과가 JSON 파일 '{cstt_file_name}'로 저장되었습니다.")'''
 

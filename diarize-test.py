@@ -25,5 +25,4 @@ if response.status_code == 200:
     print("Diarization Result:", diarization_result)
 else:
     print(f"Error: {response.status_code}, {response.text}")
-
 print(f'소요 시간: {time.time() - start}초')
