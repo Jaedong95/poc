@@ -33,44 +33,33 @@ def main(args):
     stt_module.set_client()
 
     start = time.time()
-    if args.chunk_length == None:
-        diar_result = speaker_diarizer.seperate_speakers(audio_p, audio_file_path, num_speakers=args.participant)  
-        with open(os.path.join('./data', 'TFT-diar.json'), "w", encoding="utf-8") as f:
-            json.dump(diar_result, f, ensure_ascii=False, indent=4)
-        
+    diar_result = speaker_diarizer.seperate_speakers(audio_p, audio_file_path, num_speakers=args.participant)
+    with open(os.path.join('./data', 'TFT-diar.json'), "w", encoding="utf-8") as f:
+        json.dump(diar_result, f, ensure_ascii=False, indent=4)
+    
+    if args.chunk_length == None:  
         result = stt_module.process_segments_with_whisper(audio_p, audio_file_path, diar_result)
         with open(os.path.join('./data', stt_file_name), "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=4)
         print(f"모든 결과가 JSON 파일 '{os.path.join('./data', stt_file_name)}'로 저장되었습니다.")
         print(f"소요 시간: {time.time() - start}")
     else:
-        audio_chunk = data_p.audio_chunk(audio_file_path, chunk_length=args.chunk_length)
+        audio_chunk = audio_p.audio_chunk(audio_file_path, chunk_length=args.chunk_length)
         for idx, chunk in enumerate(audio_chunk):
-            cstt_file_name = os.path.join(args.output_path, "cstt_" + args.file_name.split('.')[1].split('/')[-1] + '.json')
-            print(f'cstt: {cstt_file_name}')
-            nnnoise_chunk = noise_handler.remove_background_noise(chunk, prop_decrease=0.5)
-            filtered_chunk = noise_handler.filter_audio_with_ffmpeg(nnnoise_chunk, high_cutoff=150, low_cutoff=5000)
-            # nnnoise_chunk.close()
-            print(f'오디오 주파수 필터링: {time.time() - start}')
-            # emphasized_chunk = voice_enhancer.emphasize_nearby_voice(filtered_chunk)
-
-            diar_result = speaker_diarizer.seperate_speakers(audio_p, filtered_chunk, num_speakers=args.participant)
+            cstt_file_name = os.path.join(args.output_path, "cstt_" + args.file_name.split('.')[1].split('/')[-1] + f"_{idx}"+ '.json')
+            stt_result = stt_module.transcribe_text(audio_p, chunk)
             
-            '''
-            result = stt_module.process_segments_with_whisper(audio_p, filtered_chunk, diar_result)
-            filtered_chunk.close()
-            gc.collect()
-
             with open(cstt_file_name, "w", encoding="utf-8") as f:
-                json.dump(result, f, ensure_ascii=False, indent=4)
-            print(f"모든 결과가 JSON 파일 '{cstt_file_name}'로 저장되었습니다.")'''
+                json.dump(stt_result, f, ensure_ascii=False, indent=4)
+            print(f"모든 결과가 JSON 파일 '{cstt_file_name}'로 저장되었습니다.")
+        print(f"소요 시간: {time.time() - start}")
 
 
 if __name__ == '__main__':
     cli_parser = argparse.ArgumentParser()
     cli_parser.add_argument('--output_path', type=str, default='./data/output')
-    cli_parser.add_argument('--chunk_length', type=int, default=None)
+    cli_parser.add_argument('--chunk_length', type=int, default=270)
     cli_parser.add_argument('--file_name', type=str, default=None) 
-    cli_parser.add_argument('--participant', type=int, default=10)
+    cli_parser.add_argument('--participant', type=int, default=5)
     cli_args = cli_parser.parse_args()
     main(cli_args)

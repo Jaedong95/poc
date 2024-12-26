@@ -511,7 +511,7 @@ class SpeakerDiarizer:
             pass
         # print(results)
         diar_result = self.rename_speaker(results, num_speakers)
-        print(f'diar_result: {diar_result}')
+        # print(f'diar_result: {diar_result}')
 
         if save_path != None:    # 저장 경로 확인 및 결과 저장
             os.makedirs(save_path, exist_ok=True)
