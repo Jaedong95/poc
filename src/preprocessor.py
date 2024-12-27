@@ -448,7 +448,7 @@ class SpeakerDiarizer:
         self.pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=self.hf_api)
         self.pipeline.to(self.device)
 
-    def rename_speaker(self, result, num_speakers):
+    def rename_speaker(self, result):
         '''
         화자 분리 결과에서 발화량이 많은 순으로 화자 번호 재부여
         초과하는 화자의 발화를 제거
@@ -466,6 +466,16 @@ class SpeakerDiarizer:
             entry['speaker'] = new_speaker
             filtered_result.append(entry)
         return filtered_result
+    
+    def calc_speak_duration(self, segments, speaker):
+        speak_time = 0; cnt = 0
+        for seg in segments:
+            if seg['speaker'] == speaker:
+                speak_duration = seg['end'] - seg['start']
+                speak_time += speak_duration 
+                cnt += 1
+        print(f'{speaker}: {round((speak_time / cnt), 2)}초')
+
 
     def convert_segments(self, result):
         """
@@ -504,13 +514,13 @@ class SpeakerDiarizer:
             for result in diarization.itertracks(yield_label=True):  # result: (<Segment>, _, speaker)
                 converted_info = self.convert_segments(result)
                 segment_duration = converted_info['end'] - converted_info['start']
-                if segment_duration < 1.5:
-                    continue
+                # if segment_duration < 1.5:
+                #    continue
                 results.append(converted_info)
         else:
             pass
         # print(results)
-        diar_result = self.rename_speaker(results, num_speakers)
+        diar_result = self.rename_speaker(results)
         # print(f'diar_result: {diar_result}')
 
         if save_path != None:    # 저장 경로 확인 및 결과 저장
@@ -519,7 +529,7 @@ class SpeakerDiarizer:
             with open(save_file_path, "w") as f:
                 json.dump(diar_result, f, indent=4)
             print(f"Results saved to {save_file_path}")
-        return diar_result
+        return results
 
 
 class ETC:

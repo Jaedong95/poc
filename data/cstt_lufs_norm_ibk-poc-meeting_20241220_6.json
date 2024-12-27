@@ -1,0 +1,432 @@
+[
+    {
+        "start_time": 0.0,
+        "end_time": 1.8,
+        "text": " 구입이 가능할 것 같은데"
+    },
+    {
+        "start_time": 1.8,
+        "end_time": 3.6,
+        "text": " 저는 믿고 있습니다"
+    },
+    {
+        "start_time": 3.6,
+        "end_time": 5.0,
+        "text": " 누구를 믿어요?"
+    },
+    {
+        "start_time": 5.0,
+        "end_time": 7.3,
+        "text": " 제 자신"
+    },
+    {
+        "start_time": 7.3,
+        "end_time": 10.3,
+        "text": " 할 수 있지 않을까라고"
+    },
+    {
+        "start_time": 10.3,
+        "end_time": 14.4,
+        "text": " 이게 왜냐면 보시면"
+    },
+    {
+        "start_time": 14.4,
+        "end_time": 16.8,
+        "text": " 솔직히 기술적인 부분은"
+    },
+    {
+        "start_time": 16.8,
+        "end_time": 21.8,
+        "text": " 원라인에서 이미 어느 정도 구축을 했다고 저는 생각을 하고 있는 부분이고"
+    },
+    {
+        "start_time": 21.8,
+        "end_time": 26.1,
+        "text": " 제 쪽에서는 걱정을 하는 게 이쪽이에요"
+    },
+    {
+        "start_time": 26.1,
+        "end_time": 30.6,
+        "text": " 여기 지금 STT 쪽이 걱정이 많이 되고"
+    },
+    {
+        "start_time": 30.6,
+        "end_time": 32.4,
+        "text": " 그 쪽에 문제가 하나 있고"
+    },
+    {
+        "start_time": 32.4,
+        "end_time": 36.0,
+        "text": " 그 다음에 화면 설정 부분은 다음 주적으로 해버리면 되고"
+    },
+    {
+        "start_time": 36.0,
+        "end_time": 39.4,
+        "text": " 그 다음에 이거"
+    },
+    {
+        "start_time": 39.4,
+        "end_time": 42.9,
+        "text": " STT의 VPN 쪽이랑"
+    },
+    {
+        "start_time": 42.9,
+        "end_time": 47.0,
+        "text": " 그리고 STT 그때 얘기하셨던"
+    },
+    {
+        "start_time": 47.0,
+        "end_time": 49.5,
+        "text": " 제동이가 말 끊어가지고 나왔던 그 부분"
+    },
+    {
+        "start_time": 49.5,
+        "end_time": 52.0,
+        "text": " API 뭐 이용해서 하는 거"
+    },
+    {
+        "start_time": 52.0,
+        "end_time": 53.7,
+        "text": " 그거 어떻게 하기로 했어요?"
+    },
+    {
+        "start_time": 53.8,
+        "end_time": 57.2,
+        "text": " 그거"
+    },
+    {
+        "start_time": 57.2,
+        "end_time": 59.6,
+        "text": " 일단 상무님한테 확인 요청 드렸고"
+    },
+    {
+        "start_time": 59.6,
+        "end_time": 62.4,
+        "text": " 상무님이 좀 생각하고 말씀해 주신다고 해가지고"
+    },
+    {
+        "start_time": 62.4,
+        "end_time": 65.5,
+        "text": " 이번 주 안이나 다음 주 중으로 말씀을 드릴게요"
+    },
+    {
+        "start_time": 65.5,
+        "end_time": 67.8,
+        "text": " 제가 걱정이 되는 건"
+    },
+    {
+        "start_time": 67.8,
+        "end_time": 70.2,
+        "text": " 화면 나오고 API 붙이고"
+    },
+    {
+        "start_time": 70.2,
+        "end_time": 72.5,
+        "text": " 통신 이 부분이"
+    },
+    {
+        "start_time": 72.5,
+        "end_time": 75.0,
+        "text": " 엄청 오래 진짜 막 엄청"
+    },
+    {
+        "start_time": 75.0,
+        "end_time": 76.8,
+        "text": " 엄청 터질 텐데"
+    },
+    {
+        "start_time": 76.8,
+        "end_time": 78.8,
+        "text": " 그게 너무 걱정돼"
+    },
+    {
+        "start_time": 78.8,
+        "end_time": 81.6,
+        "text": " 그 쪽은 뭐"
+    },
+    {
+        "start_time": 81.7,
+        "end_time": 84.9,
+        "text": " 우리 거는 어쨌든 잘 만들었다 하더라도"
+    },
+    {
+        "start_time": 84.9,
+        "end_time": 87.9,
+        "text": " 붙여서 매끄럽게 되는 시리즈"
+    },
+    {
+        "start_time": 87.9,
+        "end_time": 91.9,
+        "text": " 진짜 적어도 일주일은 휴일 해야 되는데"
+    },
+    {
+        "start_time": 91.9,
+        "end_time": 94.7,
+        "text": " 거의 붙이자마자 전당하게 생겼으면"
+    },
+    {
+        "start_time": 94.7,
+        "end_time": 96.2,
+        "text": " 그게 좀 걱정이에요"
+    },
+    {
+        "start_time": 96.2,
+        "end_time": 97.4,
+        "text": " 네 알겠습니다"
+    },
+    {
+        "start_time": 97.4,
+        "end_time": 100.5,
+        "text": " 그 부분 제가 좀 얘기는 해놓을게요"
+    },
+    {
+        "start_time": 100.5,
+        "end_time": 105.3,
+        "text": " 왜냐하면 지금 IBK 측에서 얘기 나온 거 중에"
+    },
+    {
+        "start_time": 105.3,
+        "end_time": 109.1,
+        "text": " 다음 주로 그 다음 주로 넘기자는 얘기도 나오긴 해요"
+    },
+    {
+        "start_time": 109.1,
+        "end_time": 110.6,
+        "text": " 왜요?"
+    },
+    {
+        "start_time": 110.6,
+        "end_time": 111.5,
+        "text": " 개발자가 없는데"
+    },
+    {
+        "start_time": 111.5,
+        "end_time": 113.7,
+        "text": " 그거 해줄 사람이 없대요 서버에"
+    },
+    {
+        "start_time": 113.7,
+        "end_time": 115.3,
+        "text": " 그래서 지금 얘기하는 게"
+    },
+    {
+        "start_time": 115.3,
+        "end_time": 117.1,
+        "text": " 9위 말고 그 다음 주?"
+    },
+    {
+        "start_time": 117.1,
+        "end_time": 118.2,
+        "text": " 얘기하는 게"
+    },
+    {
+        "start_time": 118.2,
+        "end_time": 121.5,
+        "text": " 그 주 월요일인가 화요일에"
+    },
+    {
+        "start_time": 121.5,
+        "end_time": 124.3,
+        "text": " 서버 담당자가 그때 있어서"
+    },
+    {
+        "start_time": 124.3,
+        "end_time": 126.4,
+        "text": " 그때 VPN을"
+    },
+    {
+        "start_time": 126.4,
+        "end_time": 127.4,
+        "text": " 그때 VPN을?"
+    },
+    {
+        "start_time": 127.4,
+        "end_time": 129.4,
+        "text": " 그때 VPN을 먼저 하고"
+    },
+    {
+        "start_time": 129.4,
+        "end_time": 134.5,
+        "text": " 서버는 나중에 9월 9일 날이든 10일 날 붙이고"
+    },
+    {
+        "start_time": 134.5,
+        "end_time": 136.3,
+        "text": " 그렇게 하는 게 어떻겠냐고 얘기를 하길래"
+    },
+    {
+        "start_time": 136.3,
+        "end_time": 139.6,
+        "text": " 그거는 확인을 해보겠습니다라고 얘기는 했는데"
+    },
+    {
+        "start_time": 139.6,
+        "end_time": 144.1,
+        "text": " 우리는 어차피 핑거와 VPN만 테스트를 하면 되고"
+    },
+    {
+        "start_time": 144.1,
+        "end_time": 147.2,
+        "text": " 그래서 어쨌든 핑거 IDC 거쳐서 다 들어갈 거죠?"
+    },
+    {
+        "start_time": 147.2,
+        "end_time": 147.7,
+        "text": " 네"
+    },
+    {
+        "start_time": 147.7,
+        "end_time": 149.1,
+        "text": " 저희 거 따로 VPN 안 할 거죠?"
+    },
+    {
+        "start_time": 149.1,
+        "end_time": 151.1,
+        "text": " 네 그렇게 안 할 거예요"
+    },
+    {
+        "start_time": 151.1,
+        "end_time": 153.2,
+        "text": " 그렇게 들었어요 저도"
+    },
+    {
+        "start_time": 153.2,
+        "end_time": 154.9,
+        "text": " 그렇게 들고 그렇게 인지하고 있어요"
+    },
+    {
+        "start_time": 154.9,
+        "end_time": 160.4,
+        "text": " 그러면 그 VPN은 그 9일 그 주에 처음 테스트를 하게 되고"
+    },
+    {
+        "start_time": 160.4,
+        "end_time": 161.3,
+        "text": " 서버가"
+    },
+    {
+        "start_time": 161.3,
+        "end_time": 163.9,
+        "text": " 서버는 그때 9일 날 그쪽으로 넘어가는데"
+    },
+    {
+        "start_time": 163.9,
+        "end_time": 164.9,
+        "text": " 얘네들이"
+    },
+    {
+        "start_time": 164.9,
+        "end_time": 167.3,
+        "text": " 와..."
+    },
+    {
+        "start_time": 167.3,
+        "end_time": 167.9,
+        "text": " 걱정이다"
+    },
+    {
+        "start_time": 167.9,
+        "end_time": 173.1,
+        "text": " 왜냐하면 저희가 핑거랑 잘 통신이 된다 하더라도"
+    },
+    {
+        "start_time": 173.1,
+        "end_time": 177.2,
+        "text": " 또 이제 핑거 IDC에서 다 잘 넘어가야 되잖아요"
+    },
+    {
+        "start_time": 177.2,
+        "end_time": 178.6,
+        "text": " 요청에 따라서"
+    },
+    {
+        "start_time": 178.6,
+        "end_time": 181.6,
+        "text": " 맞아요"
+    },
+    {
+        "start_time": 181.6,
+        "end_time": 186.3,
+        "text": " 괜찮겠죠?"
+    },
+    {
+        "start_time": 186.3,
+        "end_time": 190.0,
+        "text": " 그럼 그거에 대해서는 핑거에서는"
+    },
+    {
+        "start_time": 190.0,
+        "end_time": 191.6,
+        "text": " 저희 개발자 분이랑"
+    },
+    {
+        "start_time": 191.6,
+        "end_time": 194.2,
+        "text": " 네"
+    },
+    {
+        "start_time": 194.2,
+        "end_time": 195.9,
+        "text": " 아마 이쪽에서 이제 연락을"
+    },
+    {
+        "start_time": 195.9,
+        "end_time": 197.2,
+        "text": " 개발도 하시는 거예요?"
+    },
+    {
+        "start_time": 197.2,
+        "end_time": 198.7,
+        "text": " 제가 알기로는 리소토를"
+    },
+    {
+        "start_time": 198.7,
+        "end_time": 200.9,
+        "text": " 개발자가 들어왔어요"
+    },
+    {
+        "start_time": 225.9,
+        "end_time": 245.0,
+        "text": " 이거를 약간 잘 안 돼도"
+    },
+    {
+        "start_time": 245.0,
+        "end_time": 246.8,
+        "text": " 그냥 테스트만 나와도"
+    },
+    {
+        "start_time": 246.8,
+        "end_time": 249.5,
+        "text": " 본사업은 갈 수 있다라고"
+    },
+    {
+        "start_time": 249.5,
+        "end_time": 251.4,
+        "text": " 이쪽에서 더 원하시는 거 있으면"
+    },
+    {
+        "start_time": 251.5,
+        "end_time": 253.0,
+        "text": " 다 본사업에서 부를 수 있어요"
+    },
+    {
+        "start_time": 253.0,
+        "end_time": 256.2,
+        "text": " 이렇게 얘기를 해서"
+    },
+    {
+        "start_time": 256.2,
+        "end_time": 260.2,
+        "text": " 본사업이 근데 걔네들이 어떻게 설정을 하냐에 따라서"
+    },
+    {
+        "start_time": 260.2,
+        "end_time": 263.7,
+        "text": " 엄청 달라지는 거 같아요"
+    },
+    {
+        "start_time": 263.7,
+        "end_time": 270.0,
+        "text": " 얘네들 지금 GBTS처럼 별도로 그거 하고 싶어 하는 거겠죠?"
+    }
+]

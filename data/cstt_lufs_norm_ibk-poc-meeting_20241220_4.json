@@ -1,0 +1,387 @@
+[
+    {
+        "start_time": 0.0,
+        "end_time": 3.0,
+        "text": " 얘를 어제 받았어요"
+    },
+    {
+        "start_time": 3.0,
+        "end_time": 4.0,
+        "text": " 어제 드신거에요?"
+    },
+    {
+        "start_time": 4.0,
+        "end_time": 5.0,
+        "text": " 미친거 같아요"
+    },
+    {
+        "start_time": 5.0,
+        "end_time": 7.0,
+        "text": " 어제 받았어요"
+    },
+    {
+        "start_time": 7.0,
+        "end_time": 9.0,
+        "text": " 어떻게 하는지 모르겠는데"
+    },
+    {
+        "start_time": 9.0,
+        "end_time": 12.0,
+        "text": " 1월 9일에 진짜 들어갈 수 있어요?"
+    },
+    {
+        "start_time": 12.0,
+        "end_time": 14.0,
+        "text": " 1월 9일에 들어갈 수 있어요"
+    },
+    {
+        "start_time": 14.0,
+        "end_time": 17.0,
+        "text": " 어떻게 하세요?"
+    },
+    {
+        "start_time": 17.0,
+        "end_time": 20.0,
+        "text": " 1월 9일날 넣는다고 얘기는 했고"
+    },
+    {
+        "start_time": 20.0,
+        "end_time": 22.0,
+        "text": " 정말 대환장 탐지기"
+    },
+    {
+        "start_time": 22.0,
+        "end_time": 24.0,
+        "text": " 넣는다고 얘기를 했고"
+    },
+    {
+        "start_time": 24.0,
+        "end_time": 26.0,
+        "text": " 지금도 VPN 문제도 있어요"
+    },
+    {
+        "start_time": 26.0,
+        "end_time": 29.0,
+        "text": " 그러니까 VPN 테스트 해달라고 하셨는데"
+    },
+    {
+        "start_time": 29.0,
+        "end_time": 34.0,
+        "text": " 솔직히 말씀드리면 테스트 어떻게 하세요?"
+    },
+    {
+        "start_time": 34.0,
+        "end_time": 36.0,
+        "text": " 돌겠어요"
+    },
+    {
+        "start_time": 36.0,
+        "end_time": 41.0,
+        "text": " 지금 내부에서도 아직 그게 안된거 같던데"
+    },
+    {
+        "start_time": 43.0,
+        "end_time": 48.0,
+        "text": " VPN을 어떻게 테스트 하실거에요?"
+    },
+    {
+        "start_time": 48.0,
+        "end_time": 55.0,
+        "text": " VPN 테스트를 어떤 환경으로 만들면 되는거에요"
+    },
+    {
+        "start_time": 55.0,
+        "end_time": 59.0,
+        "text": " 그거를 말씀을 해주실 수 있나요?"
+    },
+    {
+        "start_time": 63.0,
+        "end_time": 66.0,
+        "text": " 그거를 어떤 환경으로 만들어져야 되는지 말씀해주시면"
+    },
+    {
+        "start_time": 66.0,
+        "end_time": 71.0,
+        "text": " 저희가 최대한 맞춰드릴게요"
+    },
+    {
+        "start_time": 71.0,
+        "end_time": 77.0,
+        "text": " 근데 테스트는 우선 핑거랑 저희랑 하는거죠?"
+    },
+    {
+        "start_time": 77.0,
+        "end_time": 79.0,
+        "text": " 일단 그렇게 진행을 해야될거 같아요"
+    },
+    {
+        "start_time": 79.0,
+        "end_time": 82.0,
+        "text": " IDC 붙은거 확인하고 하시는거 같은 느낌이긴 한데"
+    },
+    {
+        "start_time": 82.0,
+        "end_time": 85.0,
+        "text": " 그런것도 핑거, IDC, VPN인거죠?"
+    },
+    {
+        "start_time": 85.0,
+        "end_time": 95.0,
+        "text": " 왜냐면 이게 VPN쪽에서 지금 장비가 저희한테 넘어오지도 않았을 뿐더러 아직"
+    },
+    {
+        "start_time": 95.0,
+        "end_time": 98.0,
+        "text": " 장비가 안넘어왔는데 어떻게 테스트 하는거죠?"
+    },
+    {
+        "start_time": 98.0,
+        "end_time": 100.0,
+        "text": " 아직 안넘어왔고"
+    },
+    {
+        "start_time": 100.0,
+        "end_time": 105.0,
+        "text": " 그 다음에 얘네도 지금 안에서 지금"
+    },
+    {
+        "start_time": 105.0,
+        "end_time": 107.0,
+        "text": " 일단 얘네들은 어떤 느낌이냐면"
+    },
+    {
+        "start_time": 107.0,
+        "end_time": 110.0,
+        "text": " 2차 사업, 지금 이게 어떻게 2차 POC잖아요"
+    },
+    {
+        "start_time": 110.0,
+        "end_time": 118.0,
+        "text": " POC를 하면서 본사업까지 같이 진행을 한다고 생각을 하고 있는듯한 느낌이 있는거에요"
+    },
+    {
+        "start_time": 118.0,
+        "end_time": 123.0,
+        "text": " 그래서 제가 POC 따로고 본사업은 또 따로 준비하셔야 된다고 얘기는 했는데"
+    },
+    {
+        "start_time": 123.0,
+        "end_time": 126.0,
+        "text": " 본사업도 가다를 못잡고 있으니까 얘네들이"
+    },
+    {
+        "start_time": 126.0,
+        "end_time": 131.0,
+        "text": " 왜냐면 이게 끝나면 몇달 뒤에 본사업이 떠야 되잖아요"
+    },
+    {
+        "start_time": 131.0,
+        "end_time": 136.0,
+        "text": " 그것도 좀 못맞추는거 같아요 기간을 계속"
+    },
+    {
+        "start_time": 137.0,
+        "end_time": 140.0,
+        "text": " RFP가 언제 뜨냐고 물어봤거든요"
+    },
+    {
+        "start_time": 140.0,
+        "end_time": 143.0,
+        "text": " 본사업 RFP 언제쯤 뜰까요? 이랬더니"
+    },
+    {
+        "start_time": 143.0,
+        "end_time": 146.0,
+        "text": " 4월쯤 뜨겠죠? 이렇게 말씀 드렸어요"
+    },
+    {
+        "start_time": 146.0,
+        "end_time": 148.0,
+        "text": " 3, 4월쯤 뜨겠죠? 이랬더니"
+    },
+    {
+        "start_time": 148.0,
+        "end_time": 153.0,
+        "text": " 아마 4월 넘어서 5월, 6월 얘기하는데"
+    },
+    {
+        "start_time": 153.0,
+        "end_time": 155.0,
+        "text": " 저는 그렇게 알고 있었는데"
+    },
+    {
+        "start_time": 155.0,
+        "end_time": 160.0,
+        "text": " 4월, 5월 얘기하길래 처음에는 그때쯤 나오는거였는데"
+    },
+    {
+        "start_time": 160.0,
+        "end_time": 163.0,
+        "text": " 6월 얘기하면서 점점 늘어지고 있어요"
+    },
+    {
+        "start_time": 164.0,
+        "end_time": 168.0,
+        "text": " 그래서 VPN은 제가 다음주 중은 무조건 받을 예정이고"
+    },
+    {
+        "start_time": 168.0,
+        "end_time": 170.0,
+        "text": " 확정을 한 다음에 두개 중에 하나를"
+    },
+    {
+        "start_time": 170.0,
+        "end_time": 175.0,
+        "text": " 그래서 그거 받으면 환경을 어떻게 해야 되는지를 말씀해주시면 제가 진행을 할거고"
+    },
+    {
+        "start_time": 177.0,
+        "end_time": 181.0,
+        "text": " 그리고 일단 다음주에 크리스마스가 있잖아요"
+    },
+    {
+        "start_time": 181.0,
+        "end_time": 184.0,
+        "text": " 크리스마스로 일을 해야될거 같은 느낌이 들어서"
+    },
+    {
+        "start_time": 184.0,
+        "end_time": 187.0,
+        "text": " 저는 크리스마스까지 할 예정이고"
+    },
+    {
+        "start_time": 187.0,
+        "end_time": 190.0,
+        "text": " 3주남았네"
+    },
+    {
+        "start_time": 190.0,
+        "end_time": 192.0,
+        "text": " 3주 남았고"
+    },
+    {
+        "start_time": 192.0,
+        "end_time": 195.0,
+        "text": " 그럼 무조건 다음주에는 화면 나와야"
+    },
+    {
+        "start_time": 195.0,
+        "end_time": 197.0,
+        "text": " API 테스트 해보고 그러지 않나요?"
+    },
+    {
+        "start_time": 197.0,
+        "end_time": 200.0,
+        "text": " 다음주까지 화면 나와야"
+    },
+    {
+        "start_time": 200.0,
+        "end_time": 203.0,
+        "text": " 근데 화면을 어떻게 할까요?"
+    },
+    {
+        "start_time": 203.0,
+        "end_time": 205.0,
+        "text": " 저희 쪽에서 서포팅을 해드려야 되는거죠?"
+    },
+    {
+        "start_time": 205.0,
+        "end_time": 208.0,
+        "text": " 원래 화면 개발하시려고"
+    },
+    {
+        "start_time": 208.0,
+        "end_time": 210.0,
+        "text": " 이쪽에서 할거고"
+    },
+    {
+        "start_time": 210.0,
+        "end_time": 214.0,
+        "text": " 이쁘게 하는거는 디자이너 쪽한테 물어보니"
+    },
+    {
+        "start_time": 214.0,
+        "end_time": 218.0,
+        "text": " 디자이너 쪽이 시간이 올리면 된다고 해가지고"
+    },
+    {
+        "start_time": 218.0,
+        "end_time": 220.0,
+        "text": " 그거 올리면 될거 같고"
+    },
+    {
+        "start_time": 220.0,
+        "end_time": 222.0,
+        "text": " 그 다음에 화면 설계 부분은"
+    },
+    {
+        "start_time": 224.0,
+        "end_time": 226.0,
+        "text": " 일단 이 부분으로 가고"
+    },
+    {
+        "start_time": 226.0,
+        "end_time": 229.0,
+        "text": " 안되는거는 보여주신다로 갈아주고"
+    },
+    {
+        "start_time": 229.0,
+        "end_time": 231.0,
+        "text": " 얘기를 하면 될거 같고"
+    },
+    {
+        "start_time": 233.0,
+        "end_time": 236.0,
+        "text": " 다음주 금요일까지"
+    },
+    {
+        "start_time": 236.0,
+        "end_time": 238.0,
+        "text": " 다음주 금요일까지 나오는거 좀 늦죠?"
+    },
+    {
+        "start_time": 238.0,
+        "end_time": 240.0,
+        "text": " 화면 설계 부분"
+    },
+    {
+        "start_time": 240.0,
+        "end_time": 241.0,
+        "text": " UX UI"
+    },
+    {
+        "start_time": 241.0,
+        "end_time": 244.0,
+        "text": " 아니 뭐 저희는 그런거죠"
+    },
+    {
+        "start_time": 245.0,
+        "end_time": 248.0,
+        "text": " 초안 주시면"
+    },
+    {
+        "start_time": 250.0,
+        "end_time": 253.0,
+        "text": " 바로 확인해야 되는거니까"
+    },
+    {
+        "start_time": 253.0,
+        "end_time": 256.0,
+        "text": " 개발이 문제거든요"
+    },
+    {
+        "start_time": 259.0,
+        "end_time": 265.0,
+        "text": " 그거 맞춰가지고 API를 정리하면 되는거니까"
+    },
+    {
+        "start_time": 265.0,
+        "end_time": 267.0,
+        "text": " 그렇게 하면 되겠고"
+    },
+    {
+        "start_time": 267.0,
+        "end_time": 270.0,
+        "text": " 그럼 저희는 다음주까지 화면"
+    }
+]

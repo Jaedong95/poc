@@ -73,8 +73,8 @@ class WhisperSTT(STTModule):
             if segment.no_speech_prob < 0.9:
                 modified_text = self.apply_word_dictionary(segment.text, self.word_dict)
                 results.append({
-                    'start_time': round(segment.start, 2),
-                    'end_time': round(segment.end, 2),
+                    'start_time': round(segment.start, 5),
+                    'end_time': round(segment.end, 5),
                     'text': segment.text
                 })
         return results

@@ -14,6 +14,7 @@ import gc
 
 def main(args):
     stt_file_name = "stt_" + args.file_name.split('.')[1].split('/')[-1] + '.json'
+    diar_file_name = "diar_" + args.file_name.split('.')[1].split('/')[-1] + '.json'
     print(f'stt: {stt_file_name}')
     audio_file_path = args.file_name    
     
@@ -34,7 +35,7 @@ def main(args):
 
     start = time.time()
     diar_result = speaker_diarizer.seperate_speakers(audio_p, audio_file_path, num_speakers=args.participant)
-    with open(os.path.join('./data', 'TFT-diar.json'), "w", encoding="utf-8") as f:
+    with open(os.path.join('./data', diar_file_name), "w", encoding="utf-8") as f:
         json.dump(diar_result, f, ensure_ascii=False, indent=4)
     
     if args.chunk_length == None:  
@@ -60,6 +61,6 @@ if __name__ == '__main__':
     cli_parser.add_argument('--output_path', type=str, default='./data/output')
     cli_parser.add_argument('--chunk_length', type=int, default=270)
     cli_parser.add_argument('--file_name', type=str, default=None) 
-    cli_parser.add_argument('--participant', type=int, default=5)
+    cli_parser.add_argument('--participant', type=int, default=None)
     cli_args = cli_parser.parse_args()
     main(cli_args)

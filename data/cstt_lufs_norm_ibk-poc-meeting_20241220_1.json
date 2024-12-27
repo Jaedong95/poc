@@ -1,0 +1,522 @@
+[
+    {
+        "start_time": 0.0,
+        "end_time": 3.5,
+        "text": " 이거랑 이거랑 다를 게 사실은 없는 거를"
+    },
+    {
+        "start_time": 3.5,
+        "end_time": 6.12,
+        "text": " 그래서 저희가 처음에 생각을 했었던 거는"
+    },
+    {
+        "start_time": 6.12,
+        "end_time": 7.84,
+        "text": " 얘를 눌렀었을 때"
+    },
+    {
+        "start_time": 7.84,
+        "end_time": 9.72,
+        "text": " 만약에 이게 카테고리별로 나눠지면"
+    },
+    {
+        "start_time": 9.72,
+        "end_time": 11.44,
+        "text": " 눌렀었을 때 그거를"
+    },
+    {
+        "start_time": 11.44,
+        "end_time": 16.6,
+        "text": " 이쪽에만 특화된 거를 나오게끔 하는 걸로 얘기했었잖아요"
+    },
+    {
+        "start_time": 16.6,
+        "end_time": 18.4,
+        "text": " 그래서 제가 이거를 얘기를 했어요"
+    },
+    {
+        "start_time": 18.4,
+        "end_time": 20.16,
+        "text": " 이렇게 해야 된다"
+    },
+    {
+        "start_time": 20.16,
+        "end_time": 23.36,
+        "text": " 이쪽에서 뭐 첫 번 하나에서 하는 거 말고"
+    },
+    {
+        "start_time": 23.36,
+        "end_time": 25.88,
+        "text": " 얘를 눌렀을 때 얘 특화된 걸로 나오고"
+    },
+    {
+        "start_time": 25.88,
+        "end_time": 27.36,
+        "text": " 얘를 눌렀을 때 얘도 나오고"
+    },
+    {
+        "start_time": 27.36,
+        "end_time": 28.48,
+        "text": " 얘를 눌렀을 때 얘로 나오고"
+    },
+    {
+        "start_time": 28.48,
+        "end_time": 32.24,
+        "text": " 얘를 눌렀을 때 얘로 나오는 걸 보여주는 게 낫지 않냐라고 얘기를 했는데"
+    },
+    {
+        "start_time": 32.24,
+        "end_time": 35.64,
+        "text": " 이 부분은 지금 처음 보내준 거여서"
+    },
+    {
+        "start_time": 35.64,
+        "end_time": 37.72,
+        "text": " 이건 어쩌면 조율을 하면 될 것 같고"
+    },
+    {
+        "start_time": 37.72,
+        "end_time": 43.08,
+        "text": " 근데 사실 그렇다고 하더라도"
+    },
+    {
+        "start_time": 43.08,
+        "end_time": 46.48,
+        "text": " 저희는 딱 업무책봇을 했는데"
+    },
+    {
+        "start_time": 46.48,
+        "end_time": 49.08,
+        "text": " 또 이거 책봇도 만들어야 되고"
+    },
+    {
+        "start_time": 49.08,
+        "end_time": 51.8,
+        "text": " 이거 책봇도 만들어야 되는 상황인데"
+    },
+    {
+        "start_time": 51.8,
+        "end_time": 54.56,
+        "text": " 이거까지는 그냥 하는 김에 하자 했는데"
+    },
+    {
+        "start_time": 54.56,
+        "end_time": 57.48,
+        "text": " 얘는 안 되는 이유가 아시다시피"
+    },
+    {
+        "start_time": 57.48,
+        "end_time": 60.24,
+        "text": " 담보대출 모니터링이라는 게"
+    },
+    {
+        "start_time": 60.24,
+        "end_time": 63.68,
+        "text": " 저희도 이제 그거 쌓아서 이렇게 하는 거잖아요"
+    },
+    {
+        "start_time": 63.68,
+        "end_time": 66.08,
+        "text": " 그러면은 해외 주식에 대한"
+    },
+    {
+        "start_time": 66.08,
+        "end_time": 68.64,
+        "text": " 또 디비를 새로 만들어야 된단 말이에요"
+    },
+    {
+        "start_time": 68.64,
+        "end_time": 70.48,
+        "text": " 책봇을 위해서는"
+    },
+    {
+        "start_time": 70.48,
+        "end_time": 74.4,
+        "text": " 그래서 이거를 아예 처음에 계약할 때"
+    },
+    {
+        "start_time": 74.4,
+        "end_time": 77.32,
+        "text": " 얘기를 하셨으면 또 그렇게 했을 텐데"
+    },
+    {
+        "start_time": 77.32,
+        "end_time": 80.84,
+        "text": " 지금 전혀 뭐랄까"
+    },
+    {
+        "start_time": 80.84,
+        "end_time": 83.96,
+        "text": " 너무 이해 없이 그냥 다 넣어달라고만"
+    },
+    {
+        "start_time": 83.96,
+        "end_time": 85.56,
+        "text": " 네 그런 느낌일 수도 있어요"
+    },
+    {
+        "start_time": 85.56,
+        "end_time": 89.48,
+        "text": " 그래가지고 제가 일단 얘기를 했던 거 중에 하나는"
+    },
+    {
+        "start_time": 89.48,
+        "end_time": 92.0,
+        "text": " 여기 뒤에 보시면"
+    },
+    {
+        "start_time": 92.0,
+        "end_time": 95.56,
+        "text": " 모니터링 쪽 보시면 관리자 페이지 보시면은"
+    },
+    {
+        "start_time": 95.56,
+        "end_time": 96.84,
+        "text": " 이렇게 나왔으면 좋겠다고 하는데"
+    },
+    {
+        "start_time": 96.84,
+        "end_time": 99.44,
+        "text": " 이쪽에 계속 회의록을 집어넣으시길래"
+    },
+    {
+        "start_time": 99.44,
+        "end_time": 102.4,
+        "text": " 회의록을 책봇을 만들어달라고 하더라고요"
+    },
+    {
+        "start_time": 102.4,
+        "end_time": 105.08,
+        "text": " 그래서 이건 안 된다고 했거든요 제가"
+    },
+    {
+        "start_time": 105.08,
+        "end_time": 106.8,
+        "text": " 이거는 안 된다"
+    },
+    {
+        "start_time": 106.8,
+        "end_time": 108.44,
+        "text": " 그리고 그러면서 얘기를 했던 게"
+    },
+    {
+        "start_time": 108.44,
+        "end_time": 111.68,
+        "text": " 책봇이나 이런 추가적인 기능을 드실 거면"
+    },
+    {
+        "start_time": 111.68,
+        "end_time": 114.48,
+        "text": " 본사업 때 하셔야 된다고"
+    },
+    {
+        "start_time": 114.48,
+        "end_time": 117.24,
+        "text": " 지금은 아마 그냥 간단하게만 이렇게 해서"
+    },
+    {
+        "start_time": 117.24,
+        "end_time": 119.96,
+        "text": " 진행을 하시기 낫다라고 얘기를 했거든요"
+    },
+    {
+        "start_time": 119.96,
+        "end_time": 121.52,
+        "text": " 시간도 부족하고"
+    },
+    {
+        "start_time": 121.52,
+        "end_time": 125.92,
+        "text": " 그 다음 계약적인 거에서 범위도 넘어간다고 얘기는 했는데"
+    },
+    {
+        "start_time": 125.92,
+        "end_time": 128.36,
+        "text": " 그래서 뭐 알겠다고 얘기는"
+    },
+    {
+        "start_time": 128.36,
+        "end_time": 129.92,
+        "text": " 이거는 뭐 하면서 얘기하면서 계속"
+    },
+    {
+        "start_time": 129.92,
+        "end_time": 133.16,
+        "text": " 미팅을 하면서 얘기를 해야 될 거 같고"
+    },
+    {
+        "start_time": 133.16,
+        "end_time": 135.2,
+        "text": " 그 부분은 그렇게 하면 될 거 같아요"
+    },
+    {
+        "start_time": 135.2,
+        "end_time": 136.88,
+        "text": " 사실 뒤에 더 말씀드릴 게 있는데"
+    },
+    {
+        "start_time": 136.88,
+        "end_time": 138.88,
+        "text": " 인터넷 다시 연결하면 될 거라고"
+    },
+    {
+        "start_time": 138.88,
+        "end_time": 139.96,
+        "text": " 네 알겠습니다"
+    },
+    {
+        "start_time": 139.96,
+        "end_time": 142.12,
+        "text": " 그 뭐지"
+    },
+    {
+        "start_time": 142.96,
+        "end_time": 144.76,
+        "text": " 근데 그 태만님 아시잖아요"
+    },
+    {
+        "start_time": 144.76,
+        "end_time": 146.76,
+        "text": " 저 얼마 받고 하는지"
+    },
+    {
+        "start_time": 146.76,
+        "end_time": 148.4,
+        "text": " 아 예 그건 보죠"
+    },
+    {
+        "start_time": 148.4,
+        "end_time": 150.2,
+        "text": " 그쵸? 아시잖아요"
+    },
+    {
+        "start_time": 150.2,
+        "end_time": 151.88,
+        "text": " 근데 이쪽 너무 좀"
+    },
+    {
+        "start_time": 151.88,
+        "end_time": 155.64,
+        "text": " 아무리 본사업은 사실 할지 안 할지도 모르는 건데"
+    },
+    {
+        "start_time": 155.64,
+        "end_time": 161.12,
+        "text": " 맞아요 이게 솔직히 좀 간단하게 갔으면 좋겠는데"
+    },
+    {
+        "start_time": 161.12,
+        "end_time": 164.28,
+        "text": " 너무 이것저것 집어넣어서"
+    },
+    {
+        "start_time": 164.28,
+        "end_time": 166.84,
+        "text": " 저희가 계속 얘기는 하고 있어요"
+    },
+    {
+        "start_time": 166.84,
+        "end_time": 168.72,
+        "text": " 왜 그렇게까지 가야 하냐고"
+    },
+    {
+        "start_time": 168.72,
+        "end_time": 169.2,
+        "text": " 그래서"
+    },
+    {
+        "start_time": 169.2,
+        "end_time": 170.84,
+        "text": " 근데 사모님은 뭐 하세요?"
+    },
+    {
+        "start_time": 170.84,
+        "end_time": 171.64,
+        "text": " 사모님이요?"
+    },
+    {
+        "start_time": 171.64,
+        "end_time": 173.96,
+        "text": " 네"
+    },
+    {
+        "start_time": 173.96,
+        "end_time": 175.48,
+        "text": " 사모님 아 벌써 바쁘시죠?"
+    },
+    {
+        "start_time": 175.48,
+        "end_time": 176.08,
+        "text": " 바쁘셔가지고"
+    },
+    {
+        "start_time": 176.08,
+        "end_time": 177.68,
+        "text": " 이게 뭐 때문에 바쁘세요?"
+    },
+    {
+        "start_time": 177.68,
+        "end_time": 178.56,
+        "text": " 거기 대신증권"
+    },
+    {
+        "start_time": 178.56,
+        "end_time": 179.4,
+        "text": " 대신증권"
+    },
+    {
+        "start_time": 179.4,
+        "end_time": 183.96,
+        "text": " 거기 프로젝트 앱이 나와야 되는데"
+    },
+    {
+        "start_time": 183.96,
+        "end_time": 187.32,
+        "text": " 안 나올 거 같다고 얘기를 하셔서"
+    },
+    {
+        "start_time": 187.32,
+        "end_time": 188.04,
+        "text": " 그쪽도 문자야"
+    },
+    {
+        "start_time": 188.04,
+        "end_time": 189.28,
+        "text": " 어디가"
+    },
+    {
+        "start_time": 189.28,
+        "end_time": 189.8,
+        "text": " 대신이요?"
+    },
+    {
+        "start_time": 189.8,
+        "end_time": 192.68,
+        "text": " 아 그럼 안 물어봤어"
+    },
+    {
+        "start_time": 192.68,
+        "end_time": 193.6,
+        "text": " 대신증권"
+    },
+    {
+        "start_time": 193.6,
+        "end_time": 196.0,
+        "text": " 아 그니까 대신증권이랑"
+    },
+    {
+        "start_time": 196.0,
+        "end_time": 197.76,
+        "text": " 프리랜서 몇 명하고 핑거하고"
+    },
+    {
+        "start_time": 197.76,
+        "end_time": 200.04,
+        "text": " 그 다음에 어디 업체라고 했는데"
+    },
+    {
+        "start_time": 200.08,
+        "end_time": 201.68,
+        "text": " 제가 그것까지는 자세히 안 물어봤습니다"
+    },
+    {
+        "start_time": 201.68,
+        "end_time": 204.36,
+        "text": " 한번 말씀하셨던 거 같은데 기억이 안 나네"
+    },
+    {
+        "start_time": 204.36,
+        "end_time": 207.64,
+        "text": " 그래서 잘 안 된다고 하셨고"
+    },
+    {
+        "start_time": 207.64,
+        "end_time": 211.92,
+        "text": " 그 다음에"
+    },
+    {
+        "start_time": 211.92,
+        "end_time": 213.48,
+        "text": " 이거 좀 신기하다"
+    },
+    {
+        "start_time": 213.48,
+        "end_time": 216.24,
+        "text": " 얘네가 엑셀은 아예 있대요"
+    },
+    {
+        "start_time": 216.24,
+        "end_time": 218.72,
+        "text": " 이렇게 나오는 게"
+    },
+    {
+        "start_time": 218.72,
+        "end_time": 219.88,
+        "text": " 엑셀에서"
+    },
+    {
+        "start_time": 219.88,
+        "end_time": 223.72,
+        "text": " 엑셀에서 뭐 그 옆에 보시면"
+    },
+    {
+        "start_time": 223.72,
+        "end_time": 224.84,
+        "text": " 얘네는 지금 없는데"
+    },
+    {
+        "start_time": 224.84,
+        "end_time": 229.48,
+        "text": " 옆에 블룸버그 무슨 버튼 누르면"
+    },
+    {
+        "start_time": 229.48,
+        "end_time": 232.88,
+        "text": " 이게 실시간으로 이렇게 포워딩이 된다고 하더라고요"
+    },
+    {
+        "start_time": 232.88,
+        "end_time": 235.68,
+        "text": " 그래서 그 옆에다가"
+    },
+    {
+        "start_time": 235.68,
+        "end_time": 238.96,
+        "text": " 추가적으로 뭔가 추가를 넣어줬으면 좋겠다고"
+    },
+    {
+        "start_time": 238.96,
+        "end_time": 241.36,
+        "text": " 얘기를 했는데"
+    },
+    {
+        "start_time": 241.36,
+        "end_time": 244.04,
+        "text": " 그 부분은 정리해서 보내준다고 했고요"
+    },
+    {
+        "start_time": 244.04,
+        "end_time": 246.08,
+        "text": " 이게 무슨 말인지 모르겠어요"
+    },
+    {
+        "start_time": 246.08,
+        "end_time": 248.72,
+        "text": " 이게 엑셀에서 넘어와서 하는 건데"
+    },
+    {
+        "start_time": 248.72,
+        "end_time": 249.44,
+        "text": " 잠시만요"
+    },
+    {
+        "start_time": 249.44,
+        "end_time": 251.72,
+        "text": " 제가 회의록을 적어놓은 게 있어서"
+    },
+    {
+        "start_time": 251.72,
+        "end_time": 253.72,
+        "text": " 그거를 보면서 말씀드릴게요"
+    }
+]
