@@ -65,6 +65,10 @@ class PostgresDB:
         '''
         self.db_connection.cur.execute(f"SELECT EXISTS(SELECT 1 FROM {table_name} WHERE conv_id = %s)", (pk_value,))
         return self.db_connection.cur.fetchone()[0]  # True 또는 False 반환
+
+    def get_speaker_map(self, table_name):
+        self.db_connection.cur.execute(f"SELECT cuser_id, speaker_id FROM {table_name})")
+        return self.db_connection.cur.fetchall()
     
 
 class TableEditor:
@@ -117,43 +121,28 @@ class TableEditor:
         elif task == 'delete':
             pass 
         elif task == 'update':
-            pass
+            self.db_connection.cur.execute(
+                    f"""
+                    UPDATE {table_name}
+                    SET stt_sign = true
+                    WHERE conf_id = %s""",
+                    (data, )
+            )
+            self.db_connection.conn.commit()
 
-    def edit_poc_conf_log_tb(self, task, table_name, data_type=None, data=None, col=None, val=None):
+    def edit_poc_conf_log_tb(self, task, table_name, data_type=None, data=None, col=None, val=None):   # data - meeting
+        cuser_id = self.db_connection.cur.execute(
+                f"""SELECT cuser_id FROM ibk_poc_conf_user WHERE conf_id=%s and speaker_id=%s""",
+                (data, val['speaker'])
+        )
+        cuser_result = self.db_connection.cur.fetchone()
+        
         if task == 'insert':
-            if data_type=='table':
-                for idx in range(len(data)):
-                    self.db_connection.cur.execute(
-                        f"""INSERT INTO {table_name} (conf_id, user_id, content) VALUES (%s, %s, %s)""",
-                        (data['conf_id'][idx], data['user_id'][idx], data['content'][idx])
-                    )
-                self.db_connection.conn.commit()
-            elif data_type=='raw':
-                self.db_connection.cur.execute(
-                    f"""INSERT INTO {table_name} (conf_id, user_id, content) VALUES (%s, %s, %s)""",
-                    tuple(data)
-                )
-                self.db_connection.conn.commit()
-        elif task == 'delete':
-            pass 
-        elif task == 'update':
-            pass
-    
-    def edit_poc_conf_summary_tb(self, task, table_name, data_type=None, data=None, col=None, val=None):
-        if task == 'insert':
-            if data_type=='table':
-                for idx in range(len(data)):
-                    self.db_connection.cur.execute(
-                        f"INSERT INTO {table_name} (conf_id, summary) VALUES (%s, %s)",
-                        (data['conf_id'][idx], data['summary'][idx], data['generated_at'][idx])
-                    )
-                self.db_connection.conn.commit()
-            elif data_type=='raw':
-                self.db_connection.cur.execute(
-                    f"INSERT INTO {table_name} (conf_id, summary) VALUES (%s, %s)",
-                    tuple(data)
-                )
-                self.db_connection.conn.commit()
+            self.db_connection.cur.execute(
+               f"""INSERT INTO {table_name} (content, start_time, end_time, cuser_id) VALUES (%s, %s, %s, %s)""",
+               (val['text'], val['start_time'], val['end_time'], cuser_result)
+            )
+            self.db_connection.conn.commit()
         elif task == 'delete':
             pass 
         elif task == 'update':

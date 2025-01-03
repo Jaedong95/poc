@@ -1,71 +1,20 @@
 from pydub.effects import high_pass_filter, low_pass_filter
-from sklearn.model_selection import train_test_split
+from pydub import AudioSegment
 from datetime import datetime, timedelta
-from datasets import Dataset, DatasetDict
 from pyannote.audio import Pipeline
 from collections import Counter
 from pydub import AudioSegment
-from io import BytesIO
-import pyloudnorm as pyln
 import noisereduce as nr
 import soundfile as sf
-import pandas as pd
 import subprocess
 import tempfile
 import librosa
 import torch
-import pickle
-import wave
 import json
+import wave
 import re
 import io
 import os
-
-class DataProcessor:
-    def data_to_df(self, dataset, columns):
-        if isinstance(dataset, list):
-            return pd.DataFrame(dataset, columns=columns)
-       
-    def df_to_hfdata(self, df):
-        return Dataset.from_pandas(df)
-
-    def merge_data(self, df1, df2, how='inner', on=None):
-        return pd.merge(df1, df2, how='inner')
-
-    def filter_data(self, df, col, val):
-        return df[df[col]==val].reset_index(drop=True)
-    
-    def remove_keywords(self, df, col, keyword=None, exceptions=None):
-        if exceptions != None: 
-            if keyword != None:
-                # pattern = r'(?<![\w가-힣])(?:' + '|'.join(map(re.escape, keyword)) + r')(?![\w가-힣])'
-                pattern = re.compile(r'(?<![\w가-힣])(' + '|'.join(map(re.escape, val)) + r')(?=[^가-힣]|$)')
-            else:
-                pattern = r'(?<![\w가-힣])(\S*주)(?![\w가-힣])'    # 테마주 같은 함정 증권 종목 제거 
-            mask = df[col].str.contains(pattern, na=False) & ~df[col].str.contains('|'.join(map(re.escape, exceptions)), na=False)
-            df = df[~mask]
-            return df.reset_index(drop=True)
-        else: 
-            keyword_idx = df[df[col].str.contains(keyword, na=False)].index 
-            df.drop(keyword_idx, inplace=True)
-            return df.reset_index(drop=True)
-        
-    def train_test_split(self, dataset, x_col, y_col, test_size, val_test_size, random_state=42):
-        X, X_test, y, y_test = train_test_split(dataset[x_col], dataset[y_col], test_size=0.2, stratify=dataset[y_col], random_state=random_state)
-        X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=val_test_size, stratify=y, random_state=random_state)
-        return X, X_val, X_test, y, y_val, y_test
-        
-    def save_results_to_pickle(self, result, output_file):
-        with open(output_file, "wb") as f:
-            pickle.dump(result, f)
-        print(f"Results saved to {output_file}")
-
-    def load_results_from_pickle(self, input_file):
-        with open(input_file, "rb") as f:
-            result = pickle.load(f)
-        print(f"Results loaded from {input_file}")
-        return result
-
 
 class TextProcessor:
     def count_pattern(self, text, patterns):
@@ -133,12 +82,7 @@ class TextProcessor:
         '''
         print(f'Euclidean Distance: {value}, Threshold: {threshold}')
         return "모르는 정보입니다." if value > threshold else txt
-
-class VecProcessor:
-    '''
-    임베딩 유사도 계산 및 임계
-    '''
-    pass
+    
 
 class TimeProcessor:
     def get_previous_day_date(self):
@@ -161,6 +105,30 @@ class TimeProcessor:
     def get_current_time(self):
         return datetime.now()
 
+    def is_similar(diar_seg, stt_seg):
+        '''
+        두 세그먼트 간 겹치는 길이와 발화 시간이 유사한지 검사
+        '''
+        diar_start, diar_end = diar_seg['start'], diar_seg['end']
+        stt_start, stt_end = stt_seg['start_time'], stt_seg['end_time']
+
+        diar_duration = diar_end - diar_start
+        stt_duration = stt_end - stt_start
+
+        TIME_TOLERANCE = 1.5   # 허용 오차(초)
+
+        # 겹치는 구간 계산
+        overlap_start = max(diar_start, stt_start)
+        overlap_end = min(diar_end, stt_end)
+        overlap_duration = max(0, overlap_end - overlap_start)
+        # print(diar_seg, stt_seg)
+        print(f'overlap duration: {overlap_duration}, abs: {abs(diar_duration - stt_duration)}')
+
+        # 조건: 겹침이 충분히 길고, 발화 시간도 비슷해야 함
+        if overlap_duration > 0.5 and abs(diar_duration - stt_duration) < TIME_TOLERANCE:
+            return True
+        else:
+            return False
 
 class AudioFileProcessor:
     def align_audio(self, reference_file, target_file, output_file):
@@ -314,7 +282,6 @@ class NoiseHandler:
 
             if input_source is None:
                 raise RuntimeError("Failed to determine input source.")
-
             command = [   # FFmpeg 명령 실행
                 "ffmpeg",
                 "-i", input_source,  # 입력 파일
@@ -374,23 +341,11 @@ class VoiceEnhancer:
 
     def normalize_audio_pydub(self, audio_file_path, audio_file_name, target_dbfs=-14):
         audio = AudioSegment.from_file(os.path.join(audio_file_path, audio_file_name))
-        
-        # RMS(root mean square) 기반 볼륨 정규화
         normalized_audio = audio.apply_gain(-audio.dBFS)
 
-        # 정규화된 오디오 저장
         output_file = os.path.join(audio_file_path, "pydub_nr_" + audio_file_name)
         normalized_audio.export(output_file, format="wav")
         return output_file
-
-        # RMS 기반 볼륨 정규화 + 클리핑 방지
-        change_in_dBFS = target_dbfs - audio.dBFS
-        if change_in_dBFS < 0:  # 음량 감소
-            normalized_audio = audio.apply_gain(change_in_dBFS)
-        else:
-            # 음량 증가 시 클리핑 방지
-            normalized_audio = audio.apply_gain(change_in_dBFS).clip(min=-1.0, max=1.0)
-
 
     def normalize_audio_lufs(self, audio_input, target_lufs=-14.0, output_file=None):
         """
@@ -448,24 +403,37 @@ class SpeakerDiarizer:
         self.pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=self.hf_api)
         self.pipeline.to(self.device)
 
-    def rename_speaker(self, result):
+    def rename_speaker(self, result, num_speakers):
         '''
         화자 분리 결과에서 발화량이 많은 순으로 화자 번호 재부여
         초과하는 화자의 발화를 제거
         '''
-        # 발언량에 따라 화자 정렬 및 매핑 생성   
         speaker_counts = Counter(entry['speaker'] for entry in result)
         print(f'speaker_counts: {speaker_counts}')
         sorted_speakers = [speaker for speaker, _ in speaker_counts.most_common()]
         speaker_mapping = {old_speaker: f"SPEAKER_{i:02d}" for i, old_speaker in enumerate(sorted_speakers)}
 
-        # 화자 번호 재매핑 및 제거
         filtered_result = []
         for entry in result:
             new_speaker = speaker_mapping[entry['speaker']]
+            if int(new_speaker.split('_')[-1]) > num_speakers - 1:
+                continue
             entry['speaker'] = new_speaker
             filtered_result.append(entry)
         return filtered_result
+    
+    def filter_speaker_segments(self, segments):
+        '''
+        겹치는 발화 제거 (0~10, 3~5 -> 3~5 제거)
+        '''
+        filtered_segments = []
+        for i, seg in enumerate(segments):
+            if i > 0 and seg["speaker"] != segments[i - 1]["speaker"]:   # 이전 발화와 확인
+                prev_seg = segments[i - 1]
+                if prev_seg["start"] <= seg["start"] and seg["end"] <= prev_seg["end"]:
+                    continue
+            filtered_segments.append(seg)
+        return filtered_segments
     
     def calc_speak_duration(self, segments, speaker):
         speak_time = 0; cnt = 0
@@ -475,7 +443,6 @@ class SpeakerDiarizer:
                 speak_time += speak_duration 
                 cnt += 1
         print(f'{speaker}: {round((speak_time / cnt), 2)}초')
-
 
     def convert_segments(self, result):
         """
@@ -491,7 +458,25 @@ class SpeakerDiarizer:
             "end": segment.end,
             "speaker": speaker
         }
-        
+
+    def merge_diarization_segments_with_priority(self, diar_segments):
+        """Diarization 구간 병합 시 추임새와 긴 발화 분리"""
+        merged_segments = []
+        FILLER_THRESHOLD = 2.0    # 추임새로 간주할 최대 길이 (초)
+        for seg in diar_segments:
+            if not merged_segments:
+                merged_segments.append(seg)
+                continue
+            last_seg = merged_segments[-1]
+
+            if last_seg['speaker'] != seg['speaker'] and (seg['end'] - seg['start']) <= FILLER_THRESHOLD:
+                merged_segments.append(seg)
+            elif last_seg['speaker'] == seg['speaker'] and last_seg['end'] >= seg['start']:
+                last_seg['end'] = max(last_seg['end'], seg['end'])   # 같은 화자의 연속된 발화 병합
+            else:
+                merged_segments.append(seg)   # 새로운 화자 구간 추가
+        return merged_segments
+            
     def seperate_speakers(self, data_p, audio_file, local=True, num_speakers=None, save_path=None, file_name=None):
         """
         화자 분리 실행 및 결과 저장.
@@ -506,23 +491,17 @@ class SpeakerDiarizer:
 
         results = []
         if local:
-            try:   # Pyannote Pipeline 초기화
-                diarization = self.pipeline(audio_file, num_speakers=None)
-            except Exception as e:
-                print(f"[ERROR] Diarization failed: {e}")
-                return
-            for result in diarization.itertracks(yield_label=True):  # result: (<Segment>, _, speaker)
+            print(f'start diarization')
+            diarization = self.pipeline(audio_file, num_speakers=None)
+            for result in diarization.itertracks(yield_label=True):   # result: (<Segment>, _, speaker)
                 converted_info = self.convert_segments(result)
-                segment_duration = converted_info['end'] - converted_info['start']
-                # if segment_duration < 1.5:
-                #    continue
                 results.append(converted_info)
         else:
             pass
-        # print(results)
-        diar_result = self.rename_speaker(results)
-        # print(f'diar_result: {diar_result}')
-
+        filtered_result = self.filter_speaker_segments(results)
+        merged_result = self.merge_diarization_segments_with_priority(filtered_result)
+        diar_result = self.rename_speaker(merged_result)
+        
         if save_path != None:    # 저장 경로 확인 및 결과 저장
             os.makedirs(save_path, exist_ok=True)
             save_file_path = os.path.join(save_path, file_name)
@@ -530,7 +509,6 @@ class SpeakerDiarizer:
                 json.dump(diar_result, f, indent=4)
             print(f"Results saved to {save_file_path}")
         return results
-
 
 class ETC:
     '''
