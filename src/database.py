@@ -48,7 +48,7 @@ class PostgresDB:
         return self.db_connection.cur.fetchall()
 
     def get_conf_log_data(self, meeting_id):
-        query = f"SELECT * FROM  WHERE meeting_id = '{meeting_id}';"
+        query = f"SELECT * FROM ibk_poc_conf_log WHERE conf_id = {meeting_id};"
         self.db_connection.cur.execute(query)
         return self.db_connection.cur.fetchall()
 
@@ -151,7 +151,7 @@ class TableEditor:
     def edit_poc_conf_log_tb(self, task, table_name, data_type=None, data=None, col=None, val=None):   # data - meeting     
         if task == 'insert':
             self.db_connection.cur.execute(
-               f"""INSERT INTO {table_name} (content, start_time, end_time, conf_id) VALUES (%s, %s, %s, %s)""",
+               f"""INSERT INTO {table_name} (start_time, end_time, content, conf_id) VALUES (%s, %s, %s, %s)""",
                (val[0], val[1], val[2], data)
             )
             self.db_connection.conn.commit()
