@@ -33,11 +33,8 @@ class LLMOpenAI(LLMModel):
 
     def set_grammer_guideline(self):
         self.system_role = """
-        너는 생성된 문장에서, 맞춤법 및 어법을 교정해주는 전문가야. 어색한 문장을 자연스럽게 바꿔주는 역할만 해주면 돼. 
-        """
-        self.sub_role = """
-        어색한 문장 교정 예시는 다음과 같아.
-        렉을 그치기 위한 작업  -> RAG를 구축하기 위한 작업
+        너는 입력받은 회의록에서, 맞춤법을 교정해주는 전문가야. 어색한 문장을 자연스럽게 바꿔주는 역할만 해주면 되는데, 말투는 교정하지 마.
+        교정된 문장만 반환하고, 그 외 답변은 하지마.  
         """
         
     def get_response(self, query, role="너는 금융권에서 일하고 있는 조수로, 사용자 질문에 대해 간단 명료하게 답을 해주면 돼", sub_role="", model='gpt-4o'):

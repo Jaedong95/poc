@@ -47,13 +47,18 @@ class PostgresDB:
         self.db_connection.cur.execute(query)
         return self.db_connection.cur.fetchall()
 
+    def get_conf_log_data(self, meeting_id):
+        query = f"SELECT * FROM  WHERE meeting_id = '{meeting_id}';"
+        self.db_connection.cur.execute(query)
+        return self.db_connection.cur.fetchall()
+
     def get_day_data(self, table_name, date):
         '''
         테이블에서 전일 데이터를 가져옵니다.
         args:
         date (str): 20240130 형식
         '''
-        query = f"SELECT * FROM {table_name} WHERE SPLIT_PART(conv_id, '_', 1) = '{date}' ;"
+        query = f"SELECT * FROM {table_name} WHERE SPLIT_PART(conv_id, '_', 1) = '{date}';"
         self.db_connection.cur.execute(query)
         return self.db_connection.cur.fetchall()
 
@@ -66,10 +71,6 @@ class PostgresDB:
         self.db_connection.cur.execute(f"SELECT EXISTS(SELECT 1 FROM {table_name} WHERE conv_id = %s)", (pk_value,))
         return self.db_connection.cur.fetchone()[0]  # True 또는 False 반환
 
-    def get_speaker_map(self, table_name):
-        self.db_connection.cur.execute(f"SELECT cuser_id, speaker_id FROM {table_name})")
-        return self.db_connection.cur.fetchall()
-    
 
 class TableEditor:
     def __init__(self, db_connection):
@@ -130,13 +131,12 @@ class TableEditor:
             )
             self.db_connection.conn.commit()
 
-    def edit_poc_conf_log_tb(self, task, table_name, data_type=None, data=None, col=None, val=None):   # data - meeting
+    def edit_poc_conf_log_tb_prev(self, task, table_name, data_type=None, data=None, col=None, val=None):   # data - meeting
         cuser_id = self.db_connection.cur.execute(
                 f"""SELECT cuser_id FROM ibk_poc_conf_user WHERE conf_id=%s and speaker_id=%s""",
                 (data, val['speaker'])
         )
         cuser_result = self.db_connection.cur.fetchone()
-        
         if task == 'insert':
             self.db_connection.cur.execute(
                f"""INSERT INTO {table_name} (content, start_time, end_time, cuser_id) VALUES (%s, %s, %s, %s)""",
@@ -147,3 +147,26 @@ class TableEditor:
             pass 
         elif task == 'update':
             pass
+    
+    def edit_poc_conf_log_tb(self, task, table_name, data_type=None, data=None, col=None, val=None):   # data - meeting     
+        if task == 'insert':
+            self.db_connection.cur.execute(
+               f"""INSERT INTO {table_name} (content, start_time, end_time, conf_id) VALUES (%s, %s, %s, %s)""",
+               (val[0], val[1], val[2], data)
+            )
+            self.db_connection.conn.commit()
+        elif task == 'delete':
+            pass 
+        elif task == 'update':   # data: meeting_id
+            cuser_id = self.db_connection.cur.execute(
+                f"""SELECT cuser_id FROM ibk_poc_conf_user WHERE conf_id=%s and speaker_id=%s""",
+                (data, val[2])
+            )
+            cuser_result = self.db_connection.cur.fetchone()
+            self.db_connection.cur.execute(
+                f"""UPDATE {table_name} 
+                    SET c_user = %s
+                    WHERE conf_id = %s""",
+                    (cuser_result, data)
+            )
+            self.db_connection.conn.commit()

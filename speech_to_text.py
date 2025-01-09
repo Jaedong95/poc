@@ -1,6 +1,6 @@
 from src import NoiseHandler, VoiceEnhancer, VoiceSeperator, SpeakerDiarizer
-from src import AudioFileProcessor
-from src import WhisperSTT
+from src import AudioFileProcessor, DataProcessor
+from src import WhisperSTT, LLMOpenAI
 from pydub.silence import detect_nonsilent
 from dotenv import load_dotenv
 from pydub import AudioSegment
@@ -23,32 +23,38 @@ def main(args):
     openai_client = OpenAI(api_key=openai_api_key)
 
     hf_api_key = os.getenv('HF_API')
+    data_p = DataProcessor()
     audio_p = AudioFileProcessor()
     noise_handler = NoiseHandler()
     voice_enhancer = VoiceEnhancer()
     voice_seperator = VoiceSeperator()
 
-    # speaker_diarizer = SpeakerDiarizer()
-    # speaker_diarizer.set_pyannotate(hf_api_key)
+    with open(os.path.join('./config', 'llm_config.json')) as f:
+        llm_config = json.load(f)
+
+    speaker_diarizer = SpeakerDiarizer()
+    speaker_diarizer.set_pyannotate(hf_api_key)
     stt_module = WhisperSTT(openai_api_key)
     stt_module.set_client()
     stt_module.load_word_dictionary('./config/word_dict.json')
 
+    '''grammer_corrector = LLMOpenAI(llm_config, openai_api_key)
+    grammer_corrector.set_generation_config()
+    grammer_corrector.set_grammer_guideline()'''
+    
     start = time.time()
-    print(f'start diaraztion')
-    '''diar_result = speaker_diarizer.seperate_speakers(audio_p, audio_file_path, num_speakers=args.participant)
-    with open(os.path.join('./data', diar_file_name), "w", encoding="utf-8") as f:
-        json.dump(diar_result, f, ensure_ascii=False, indent=4)
+    diar_file_path = os.path.join('meeting_records', 'wav', audio_file_path.split('/')[-1])
+    diar_result = speaker_diarizer.seperate_speakers(audio_p, diar_file_path, num_speakers=args.participant)
+    with open(os.path.join('./meeting_records', 'diar', diar_file_name), "w", encoding="utf-8") as f:
+       json.dump(diar_result, f, ensure_ascii=False, indent=4)
     print(f'diar end: {time.time() - start}초')
-    # with open(os.path.join('./data', diar_file_name), "r", encoding="utf-8") as f:
-    #    diar_result = json.load(f)'''
     
     results = []
     if args.chunk_length == None:
         result = stt_module.transcribe_text(audio_p, audio_file_path)
-        with open(os.path.join('./data', stt_file_name), "w", encoding="utf-8") as f:
+        with open(os.path.join('./meeting_records', stt_file_name), "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=4)
-        print(f"모든 결과가 JSON 파일 '{os.path.join('./data', stt_file_name)}'로 저장되었습니다.")
+        print(f"모든 결과가 JSON 파일 '{os.path.join('./meeting_records', stt_file_name)}'로 저장되었습니다.")
         print(f"소요 시간: {time.time() - start}")
     else:
         audio_chunk = audio_p.audio_chunk(audio_file_path, chunk_length=args.chunk_length)
@@ -59,15 +65,19 @@ def main(args):
                 chunk.export(temp_audio_file.name, format="wav")
                 temp_audio_path = temp_audio_file.name
             stt_result = stt_module.transcribe_text(audio_p, temp_audio_path)
+            # paragraph_text = ' '
             for result in stt_result:
                 result['start_time'] += chunk_offset
                 result['end_time'] += chunk_offset
-            results.append(stt_result)
-        with open(stt_file_name, "w", encoding="utf-8") as output_file:
-            json.dump(results, output_file, ensure_ascii=False, indent=4)
+                # paragraph_text += result['text'] + ' '
+                results.append(result)
+            # print(paragraph_text)
+        flatten_result = data_p.flatt_list(results)
+        with open(os.path.join('./meeting_records', 'stt', stt_file_name), "w", encoding="utf-8") as output_file:
+            json.dump(flatten_result, output_file, ensure_ascii=False, indent=4)
         print(f"모든 결과가 JSON 파일 '{stt_file_name}'로 저장되었습니다.")
-        
         print(f"소요 시간: {time.time() - start}")
+    
 
 
 if __name__ == '__main__':

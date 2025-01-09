@@ -1,20 +1,74 @@
 from pydub.effects import high_pass_filter, low_pass_filter
-from pydub import AudioSegment
 from datetime import datetime, timedelta
+from datasets import Dataset
 from pyannote.audio import Pipeline
 from collections import Counter
 from pydub import AudioSegment
+from io import BytesIO
+import pyloudnorm as pyln
 import noisereduce as nr
 import soundfile as sf
+import pandas as pd
+import numpy as np 
 import subprocess
 import tempfile
 import librosa
 import torch
-import json
+import pickle
 import wave
+import json
 import re
 import io
 import os
+
+class DataProcessor:
+    def data_to_df(self, dataset, columns):
+        if isinstance(dataset, list):
+            return pd.DataFrame(dataset, columns=columns)
+       
+    def df_to_hfdata(self, df):
+        return Dataset.from_pandas(df)
+
+    def merge_data(self, df1, df2, how='inner', on=None):
+        return pd.merge(df1, df2, how='inner')
+
+    def filter_data(self, df, col, val):
+        return df[df[col]==val].reset_index(drop=True)
+    
+    def remove_keywords(self, df, col, keyword=None, exceptions=None):
+        if exceptions != None: 
+            if keyword != None:
+                # pattern = r'(?<![\w가-힣])(?:' + '|'.join(map(re.escape, keyword)) + r')(?![\w가-힣])'
+                pattern = re.compile(r'(?<![\w가-힣])(' + '|'.join(map(re.escape, val)) + r')(?=[^가-힣]|$)')
+            else:
+                pattern = r'(?<![\w가-힣])(\S*주)(?![\w가-힣])'    # 테마주 같은 함정 증권 종목 제거 
+            mask = df[col].str.contains(pattern, na=False) & ~df[col].str.contains('|'.join(map(re.escape, exceptions)), na=False)
+            df = df[~mask]
+            return df.reset_index(drop=True)
+        else: 
+            keyword_idx = df[df[col].str.contains(keyword, na=False)].index 
+            df.drop(keyword_idx, inplace=True)
+            return df.reset_index(drop=True)
+        
+    def save_results_to_pickle(self, result, output_file):
+        with open(output_file, "wb") as f:
+            pickle.dump(result, f)
+        print(f"Results saved to {output_file}")
+
+    def load_results_from_pickle(self, input_file):
+        with open(input_file, "rb") as f:
+            result = pickle.load(f)
+        print(f"Results loaded from {input_file}")
+        return result
+
+    def flatt_list(self, nested_list):
+        flat_list = []
+        for item in nested_list:
+            if isinstance(item, list):  # 리스트 내부의 리스트 처리
+                flat_list.extend(flatten_list(item))
+            else:
+                flat_list.append(item)
+        return flat_list
 
 class TextProcessor:
     def count_pattern(self, text, patterns):
@@ -111,10 +165,8 @@ class TimeProcessor:
         '''
         diar_start, diar_end = diar_seg['start'], diar_seg['end']
         stt_start, stt_end = stt_seg['start_time'], stt_seg['end_time']
-
         diar_duration = diar_end - diar_start
         stt_duration = stt_end - stt_start
-
         TIME_TOLERANCE = 1.5   # 허용 오차(초)
 
         # 겹치는 구간 계산
@@ -125,7 +177,7 @@ class TimeProcessor:
         print(f'overlap duration: {overlap_duration}, abs: {abs(diar_duration - stt_duration)}')
 
         # 조건: 겹침이 충분히 길고, 발화 시간도 비슷해야 함
-        if overlap_duration > 0.5 and abs(diar_duration - stt_duration) < TIME_TOLERANCE:
+        if overlap_duration > 1 and abs(diar_duration - stt_duration) < TIME_TOLERANCE:
             return True
         else:
             return False
@@ -402,6 +454,46 @@ class SpeakerDiarizer:
         self.hf_api = hf_api 
         self.pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=self.hf_api)
         self.pipeline.to(self.device)
+    
+    def rename_speaker_test(self, result, num_speakers):
+        '''
+        1. 발화량 기준으로 화자 번호 부여
+        2. 발언 시간이 1초보다 짧은 화자를 뒤로 재배치
+        '''
+        speaker_counts = Counter(entry['speaker'] for entry in result)
+        speaker_durations = {}
+        for speaker in speaker_counts:
+            total_time, avg_time = self.calc_speak_duration(result, speaker)
+            speaker_durations[speaker] = {
+                "total_time": total_time,
+                "avg_time": avg_time,
+                "count": speaker_counts[speaker]
+            }
+        print(f'speaker_durations: {speaker_durations}')
+        sorted_speakers = sorted(
+            speaker_durations.keys(),
+            key=lambda spk: speaker_durations[spk]['count'],
+            reverse=True
+        )
+        speaker_mapping = {old_speaker: f"SPEAKER_{i:02d}" for i, old_speaker in enumerate(sorted_speakers)}
+        for entry in result:
+            entry['speaker'] = speaker_mapping[entry['speaker']]
+
+        short_duration_speakers = [
+            spk for spk in sorted_speakers if speaker_durations[spk]['avg_time'] < 3
+        ]
+        long_duration_speakers = [
+            spk for spk in sorted_speakers if speaker_durations[spk]['avg_time'] >= 3
+        ]
+        final_speakers = long_duration_speakers + short_duration_speakers
+        final_speaker_mapping = {old_speaker: f"SPEAKER_{i:02d}" for i, old_speaker in enumerate(final_speakers)}
+
+        filtered_result = []
+        for entry in result:
+            entry['speaker'] = final_speaker_mapping[entry['speaker']]
+            filtered_result.append(entry)
+        return filtered_result
+
 
     def rename_speaker(self, result, num_speakers):
         '''
@@ -442,7 +534,7 @@ class SpeakerDiarizer:
                 speak_duration = seg['end'] - seg['start']
                 speak_time += speak_duration 
                 cnt += 1
-        print(f'{speaker}: {round((speak_time / cnt), 2)}초')
+        return speak_time, round((speak_time / cnt), 2)
 
     def convert_segments(self, result):
         """
@@ -495,20 +587,15 @@ class SpeakerDiarizer:
             diarization = self.pipeline(audio_file, num_speakers=None)
             for result in diarization.itertracks(yield_label=True):   # result: (<Segment>, _, speaker)
                 converted_info = self.convert_segments(result)
+                if converted_info['end'] - converted_info['start'] < 0.6:
+                    continue
                 results.append(converted_info)
         else:
             pass
-        filtered_result = self.filter_speaker_segments(results)
-        merged_result = self.merge_diarization_segments_with_priority(filtered_result)
-        diar_result = self.rename_speaker(merged_result)
-        
-        if save_path != None:    # 저장 경로 확인 및 결과 저장
-            os.makedirs(save_path, exist_ok=True)
-            save_file_path = os.path.join(save_path, file_name)
-            with open(save_file_path, "w") as f:
-                json.dump(diar_result, f, indent=4)
-            print(f"Results saved to {save_file_path}")
-        return results
+        # filtered_result = self.filter_speaker_segments(results)
+        # merged_result = self.merge_diarization_segments_with_priority(results)
+        diar_result = self.rename_speaker(results, num_speakers)
+        return diar_result
 
 class ETC:
     '''

@@ -1,4 +1,5 @@
 import io 
+import os
 from pydub import AudioSegment
 from openai import OpenAI
 from abc import ABC, abstractmethod
@@ -47,13 +48,11 @@ class WhisperSTT(STTModule):
         prev_text = None
         for segment in results:
             text = segment['text'].strip()
-            if text == prev_text:  # 이전 텍스트와 동일하면 제거
+            if text == prev_text:     # 이전 텍스트와 동일하면 제거
                 continue
             prev_text = text
             filtered_results.append(segment)
         return filtered_results
-
-    
 
     def process_segments_with_whisper(self, audio_p, audio_file, diar_results, db_stt_result_path, meeting_id, table_editor, openai_client):
         """
@@ -93,7 +92,6 @@ class WhisperSTT(STTModule):
             else:
                 start_ms = int(diar_result['start'] * 1000)
                 end_ms = int(diar_result['end'] * 1000)
-            
             segment_audio = audio[start_ms:end_ms]
             segment_audio = segment_audio.set_frame_rate(16000).set_channels(1).set_sample_width(2)
             
@@ -110,12 +108,9 @@ class WhisperSTT(STTModule):
                         language='ko',
                         response_format='verbose_json'
                     )
-                    print(f'transcription: {transcription}')
-                
             for segment in transcription.segments:
                 if re.search(pattern, segment.text):
                     continue
-                
                 if segment.no_speech_prob < 0.7:
                     applied_text = self.apply_word_dictionary(segment.text, self.word_dict)
                     modified_text = openai_client.get_response(applied_text, role=openai_client.system_role, sub_role=openai_client.sub_role)
@@ -132,7 +127,7 @@ class WhisperSTT(STTModule):
                 table_editor.edit_poc_conf_tb(task='update', table_name='ibk_poc_conf', data=meeting_id, val=db_stt_result_path)
         return results
     
-    def transcribe_text(self, audio_p, audio_file):
+    def transcribe_text(self, audio_p, audio_file, meeting_id=None, segment_id=None, table_editor=None):
         if isinstance(audio_file, AudioSegment):
             whisper_audio = audio_file.set_frame_rate(16000).set_channels(1).set_sample_width(2)
             audio_buffer = io.BytesIO()
@@ -142,10 +137,9 @@ class WhisperSTT(STTModule):
         elif isinstance(audio_file, io.BytesIO):
             audio_file = audio_p.bytesio_to_tempfile(audio_file)
         
-        # nonsilent_s = self.calculate_nonsilent_start(audio_file)
-        audio = AudioSegment.from_file(audio_file)  # 컨텍스트 매니저 제거
+        audio = AudioSegment.from_file(audio_file)    # 컨텍스트 매니저 제거
         whisper_audio = audio.set_frame_rate(16000).set_channels(1).set_sample_width(2)
-        # self.load_word_dictionary(os.path.join('./config', 'word_dict.json'))
+        self.load_word_dictionary(os.path.join('./config', 'word_dict.json'))
         with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as temp_audio_file:
             whisper_audio.export(temp_audio_file.name, format="wav")
             with open(temp_audio_file.name, "rb") as audio_file:
@@ -154,20 +148,30 @@ class WhisperSTT(STTModule):
                     file=audio_file,
                     language='ko',
                     response_format="verbose_json",
-                    #timestamp_granularities=["segment"]
+                    # timestamp_granularities=["segment"]
                 )
         segments = transcription.segments
-        print(f'trans result: {transcription.segments}')   # id, avg_logprob, compression_ratio, end, no_speech_prob, seek, start, temperature (0.0), text, tokens
-        results = []
-        for segment in segments:
-            if segment.no_speech_prob < 0.9 and segment.avg_logprob > -3.3:
-                modified_text = self.apply_word_dictionary(segment.text, self.word_dict)
-                results.append({
-                    'start_time': round(segment.start, 5),   # + nonsilent_s  제거. 초반만 이상하고, 후반에는 원상 복귀됨 
-                    'end_time': round(segment.end, 5),   # + nonsilent_s 
-                    'text': modified_text.strip(),
-                    'prob': segment.no_speech_prob,
-                    'avg_logprob': segment.avg_logprob
-                })
-        filtered_results = self.filter_stt_result(results)
-        return filtered_results
+        # print(f'trans result: {transcription.segments}')   # id, avg_logprob, compression_ratio, end, no_speech_prob, seek, start, temperature (0.0), text, tokens
+        if meeting_id == None:
+            results = []
+            for segment in segments:
+                if segment.no_speech_prob < 0.9 and segment.avg_logprob > -2.0:
+                    modified_text = self.apply_word_dictionary(segment.text, self.word_dict)
+                    results.append({
+                        "start_time": segment.start,
+                        "end_time": segment.end, 
+                        'text': modified_text.strip(),
+                        'prob': segment.no_speech_prob,
+                        'avg_logprob': segment.avg_logprob
+                    })
+            filtered_results = self.filter_stt_result(results)
+            return filtered_results
+        else:
+            chunk_offset = segment_id * 270   # 청크의 시작 시간 오프셋 계산    
+            for segment in segments:
+                if segment.no_speech_prob < 0.9 and segment.avg_logprob > -2.0:
+                    modified_text = self.apply_word_dictionary(segment.text, self.word_dict)
+                    segment.start += chunk_offset 
+                    segment.end += chunk_offset
+                    stt_result = (segment.start, segment.end, segment.text)
+                    table_editor.edit_poc_conf_log_tb(task='insert', table_name='ibk_poc_conf_log', data=meeting_id, val=stt_result)
